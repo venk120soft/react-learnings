@@ -1,0 +1,15 @@
+React :
+
+What is the difference between functional component and Class component and what are the benifits? Why one over other?
+How do you maintian the state in react? and what are the different ways of maitaining state?
+What is react life cycle?
+In react life cycle events, what is the best place to call the asynchronus api calls?
+Javascript clousers?
+
+Angular :
+What is the difference between ng-emit and ng-broadcast?
+What is the difference between ng-if and ng-show? why one over other?
+what is the difference between promices and observables
+what is ng-watch?
+what is webpack?
+component lifecycle in angular js?
