@@ -3,7 +3,11 @@ React :
 What is the difference between functional component and Class component and what are the benifits? Why one over other?
 How do you maintian the state in react? and what are the different ways of maitaining state?
 What is react life cycle?
+Describe the order of life cycle events in react?
 In react life cycle events, what is the best place to call the asynchronus api calls?
+What is Heigher order component?
+How do you connect to the redux?
+
 Javascript clousers?
 
 Angular :
