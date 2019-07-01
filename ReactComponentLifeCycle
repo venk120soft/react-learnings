@@ -1,0 +1,94 @@
+What are the React Lifecycle methods?
+
+In React, life methods are changing from one version to other. some are deprecating.
+
+We hhhave 2 phhases in react lifecycle 1) render 2) re-render
+        ## render
+1) When react page starts loading the control goes to the Constructor.
+  In Constructor, We intialize the state to its intail values. 
+2) After Intializing the values thhe control goes to getDerivedStateFromProps method wich is also called ComponentWillReceiveProps(whhich is deprecated now)
+
+In here the new props will set to the state and the new state will return. and it is static method so that user cannot access with the this keyword to set the state.
+
+3) based on the new state return from the getDerivedStateFromProps, the component will be rendered. In here we should return only JSX output
+
+4) After the DOM is ready the control will goto ComponentDidMount methhod and get the data from third party apis thhhen update thhe state.
+
+        ## re-render
+5) Again getDerivedStateFromProps method will be called and returned new new state.
+6) based on the new state we can decide whether we render the component or not in shouldComponentUpdate method.
+  this method takes prev state, new state and compares it if true we should render the component else we can skip
+7) render:  this will be decided based on the shouldComponentUpdate method
+8) getSnapshotBeforeUpdate / ComponentWillUpdate. In here actual reder takes place 
+9) ComponentDidUpdate() In thhis method we can call thhird party api and update them.
+10) ComponentWillUnMount() here thhe component will dies.
+
+   Class MyCoponent{
+   // Intializingg values
+   constructor(props:ISomeProps){
+   super(props);
+   const {porp11, prop2}=props;
+    this.state={
+           listItems,
+           columns,
+           prop1:listItems,
+           prop2: columns
+           };
+   }
+   // setting the props and returningg new state
+   public static getDerivedStateFromProps(nextProps:ISomeProps, prevState:ISomeState){
+     let newState=null;
+     if(prevState.prop1!==nextProps.prop1)
+       newState=Object.assiggn({},{
+               prop1:nextProps.prop1,
+               prop2:nextProps.prop2
+              });
+     else{
+        return prevState;
+     }
+     return newState;
+   }
+   
+   // rendering the component based on the new state return from getDerivedStateFromProps
+    public render():JSX.Element{
+        // some statements
+        return (
+              <div>
+              // multiple lines of html
+              // we can write the expressions in {}
+              </div>
+        );
+    }
+    
+    // this will get called after the render methhod and DOM is ready.
+    public componentDidMount():void{
+      // we can call any api and set the state here
+    }
+    
+     // this will only call on re rendering the component
+     public shouldComponentUpdate(nextState: ISomeProps): boolean {
+        // dont update te component if the states are same
+        if (this.props==newState) {
+          this._resetComponent();
+        }
+
+        return true;
+      }
+      
+      public getSnapshotBeforeUpdate(prevProps: ISomeProps){
+        const result= {executeOnLoad:false} as ISomeProps;
+        if(prevProps.key!==ths.props.key){
+          result.executeOnLoad=true;
+        }
+        return result
+      }
+
+      public componentDidUpdate():void{
+      // we can call any api and set the state here
+      }
+      
+      public componentWillUnMount():void{
+        // hhhere we set all the state to nulll;
+        // this is the pace thhe component is die.
+      }
+   }
