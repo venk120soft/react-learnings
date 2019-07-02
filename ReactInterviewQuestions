@@ -1,5 +1,76 @@
 React :
 
+Why Would you use react in your project?
+  i) I would look at the stable version within the entire period of we implementing the project which wont change in between.
+  ii) Efficiency is one of React’s key points. A big part of its efficiency comes from React’s use of a Virtual DOM. 
+  React keeps a virtual copy of the page’s DOM behind the scenes. 
+  When a change occurs, React compares the current DOM with the incoming change being very careful to only update what has changed. 
+  This causes the browser to only re-render a small part of the page, instead of the entire thing. 
+  This makes React much more efficient and great for complex applications where changes occur frequently
+  iii) Resusable components, fast and scalable 
+  iv) JSX syntax
+1) Why do we use arrow functions in react? and whhhat is the advantagge of using arrow functions?
+Ans: Arrow functions doesnot have its own this, so its takes from its lexical scope(immediate class scope).
+funnctions have its own this that is the reason we are going for arrow functions and implemnting the properties.
+Explanation:
+In react, we can have onClick handles, which is actually a properties of a class. If you want to access the this keyword inside the function inside the function then that would points to within thhe scope not the gglobal scope.
+so the solution is we can create arrow functions and use this keywords whhichh points to class scope.
+also we can bind this property inside the constructor.
+
+2) what is the difference between method and property?
+Object in JavaScript is just key-value pairs stored in a Hash. 
+property is a value stored in the hash key, whereas method is a function stored in hash key.
+
+3) How do you prevent components from re rendering?
+Ans: We can make this decision in shouldComponetUpdate and set it to false.
+  We can use React.PureComponent: In here we no need to use shouldComponetUpdate, bcoz PureComponent automatically compares with prev state with new state.
+  if you use shouldComponetUpdate inside the PureCoponent then it complains
+
+4) Explain Error Boundaries?
+
+5) Best Life cycle method to call an api ?
+ render props  // using childern component as functions 
+ context-api pattern
+ presentation component pattern
+ 
+6) What is css in JS pattern?
+ In react we use use css in JS pattern, it means when define some css and want to use them in our dom if you change something  in the class that will effect in many places.
+ so as we are using the JS pattern we pass the css as inline for the components so that it wont effect in other places.
+ The advantage of inline css is we can conditionally render
+ 
+7) why cant you update state directly without setState()?
+setState() mehtod will set the state first rerender the component. but if you dont use it and just set the state it wont rerender.
+
+8) How many ways you conditionalyy render in react.
+We can use if else, ?: and &&
+example: if(test=true){return <div>hello</div>}else{return <div>hey</div>}
+
+9) What is fragments and why do we use it?
+
+10) How to do code splitting? or how to do lazy loading?
+
+11) What is redux middillware?
+we used redux thunk, it is used to handle the state of the components, Whenever some action performed, it dispatches the promise to the store 
+and it will keep track of the asyn call and based on the returned values state gets updated in the store.
+
+12) How to optimize react app?
+// try to find the parameters, and applicaion 
+Try to apply the lazy loading for certain routes using React.Lazy<>
+If is there any unwanted setstates are theere then try to handle that in shouldComponentUpdate, if the state are not equal then only render it.
+If we find the api are slow then we may need some improvedments in the backend
+Look for how the state is getting update, if they updating the state directly instead of using Immutable then change that to immutable
+Assets are loading slowly you can change CDN's
+Sometimes functional component gives more performance than the class components.
+If we use functions for handling Events then try to replace with arrow functions which are properties.
+
+13) Explain VirtualDOM? or How to update DOM Effeciently?
+
+
+14) Just write todo list application using React
+
+
+
+In Javascript we have methods and properties
 What is the difference between functional component and Class component and what are the benifits? Why one over other?
 How do you maintian the state in react? and what are the different ways of maitaining state?
 What is react life cycle?
