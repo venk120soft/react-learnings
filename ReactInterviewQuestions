@@ -9,11 +9,13 @@ Why Would you use react in your project?
   This makes React much more efficient and great for complex applications where changes occur frequently
   iii) Resusable components, fast and scalable 
   iv) JSX syntax
-1) Why do we use arrow functions in react? and whhhat is the advantagge of using arrow functions?
+1) Why do we use arrow functions in react? and what is the advantage of using arrow functions?
 Ans: Arrow functions doesnot have its own this, so its takes from its lexical scope(immediate class scope).
 funnctions have its own this that is the reason we are going for arrow functions and implemnting the properties.
+i.e it allows to bind the context of components properly since auto-binding is not available by default in ES6. 
+So when we use arrow functions, the scope points to the lexical hence binding the functions is not necessary.
 Explanation:
-In react, we can have onClick handles, which is actually a properties of a class. If you want to access the this keyword inside the function inside the function then that would points to within thhe scope not the gglobal scope.
+In react, we can have onClick handles, which is actually a properties of a class. If you want to access the this keyword inside the function inside the function then that would points to within thhe scope not the global scope.
 so the solution is we can create arrow functions and use this keywords whhichh points to class scope.
 also we can bind this property inside the constructor.
 
@@ -88,3 +90,288 @@ what is the difference between promices and observables
 what is ng-watch?
 what is webpack?
 component lifecycle in angular js?
+
+What is React? Why it is used for?
+React is a JavascriptLibrary developed by Facebook in 2011.
+It is used to develop complex, interactive Web and Mobile UI
+It follows component based approach
+It Allows to create reusable UI components.
+
+What are the Features of React?
+It uses Virtual DOM, it does server side rendering.
+Follows the Uni Directional Data flow, i.e one way data binding
+
+Major Advantage of react.
+Increaces application performance. Easy to write test cases for UI components.
+Can be used on client as well as server side.
+React js is easy to integrate with other third party libraries like angular.
+
+What are the limitations of react?
+React is not a fulll scale framework, i.e it is Just the View in MVC
+Angular JS is Complete MVC framework, where as React is only view part of MVC. 
+React Library is quite large.
+Uses inline templating and JSX
+
+What is JSX?
+It describes like Javascript XML.
+It Utilizes the expressiveness of Javascript with HTML 
+It bootsup the JS performance.
+JSX expression must have only one Outermost element
+eg: public render(){
+return (<div>
+// can be many elements like div p li but we must have only one outer element
+</div>
+)
+}
+
+What do you understand by Virtual DOM?
+Virtual DOM is lightweight Javascript Object, which is the copy of the real DOM.
+It works in 3 simple steps:
+  i) Whenevera any underlaying data changes, the enitre UI is re-rendered in Virtual DOM representaion.
+  ii) Then the difference between previous DOM and new once is calculated.
+  iii) Once the calculations are done the real DOM will be Updated with only the things that have actually changed.
+
+Difference between Virtual DOM and Real DOM
+Virtual DOM
+Updates Faster
+Cant Directly Update HTML
+Updates If JSX element renders
+No DOM Manipulation expense
+No Memory Wastage
+
+Real DOM:
+Updates Slower
+Can Directly update HTML
+If elements updates create a new DOM
+DOM manipulation is very expensive
+Too much of memory wastage.
+
+Why browsers can't read JSX?
+JSX is combination of javascript and xml, Browsers can read javascript objects only
+JSX file is converted to JS object by JSX transformer like Babel, before reaching Browser.
+
+JSX file => JSX transformer(Babel) => Javascript Object => Browser
+
+How React is Different from Angular?
+React            Topic          Angular
+View            Archtecture     MVC
+SSR             Rendering       CSR
+Virtual DOM     DOM             Real DOM
+one way Biding  Data Binding    Two Way Data binding
+Compile Time    Debugging       Runtime
+Facebook        Author          Google
+
+React Components:
+
+What do you understand from 'In React, everything is a component'?
+Components are Building blocks of React application's UI.
+Coponents splits UI into independent, reusable pieces and rednders each piece inpendently
+Javascript functions which takes in arbitary inputs and returns HTML Representaion.
+
+Explaing the purpose of render() in react?
+Every component must have render().
+Render function returns single react element which is the representaion of native DOM component
+It must have only one outer element.
+Should be a Pure function
+
+What is Pure function?
+Pure functions are the functions which do not change the state or logic. it should give the same output it should not depend on the state.
+Pure functions are immutable
+
+What are Props in React?
+props are the short form of properties, Which are read only.
+As React follows uni directional data flow, props can only be passed from parent to child. or passed down from parent to child component
+props are immutable and pure, these are used to render dynamic data.
+
+How do you embed one component inside other?
+class MyComponent:React.Component{
+constructor(props){
+    // this helps to access the parent class properties.
+    super(props);
+    this.state ={
+        name: "Dharshana",
+        id: '123',
+        age: props.age // accessing the properties passed on the component
+      }
+}
+public render():JSXElement{
+return (<div>
+            <p>state values are {this.state.name} with Id {this.state.id}</>
+            <p>It is Including one more copmonent</p>
+            // without props
+            // <SomeOtherComponentWithoutProps/>
+            // With Props
+            <Header name="Venkatesh" id="58"/>
+        </div>)
+}}
+
+class Header(props){
+public render():JSXElement{
+return (<div>
+<h1>Hello, Wellcome {props.name}</h1>
+<h1>Your Id is {props.id}
+</div>
+);
+}}
+// Append in the component to element with id content. it is place holder for the component
+ReactDOM.render(<MyComponent age="28"/>, document.getElementById('content') )
+
+What is state in react and how it is used?
+state is heart of react components.
+state determines copnentns rendering and behaviour
+state must be kept as simple as possible
+which helps in creating dynamic and interactive components.
+state can be accessed via this.state()
+can be updated using this.setState()
+
+What is the difference between this.state() and this.setState() ? cant we use one over other?
+this.state can be used to assign the initial state and this.setState is to update them going forward.
+When we updating the state using this.setState() the DOM gets re rendered this is the main reason we use the setState instead of this.state()
+
+What is the difference between state and props?
+props are readonly, within the component we cant set the values for props bcz those are readonly.
+Props can be passed from parent to child component.to parent component can change the props value.
+We can set the state based on the props passed from the parent component
+Parent component can't change the value of state.
+State wont change inside the component.
+
+How can you update the state of a component?
+using the this.setState();
+this.setState({name:"ramesh", age:"25"});
+
+What is the difference between statefull and stateless components?
+Statefull components are stores the state changes info (past, current and possible feature) in memory, can change the state.
+Where as stateless componnents are the pure functions,it wont store in memory. it calculate the internal state of the component.
+Stateless components receive the props from statefull components and treatthem as call back functions.
+
+// statefull
+import React from "react";
+import Show from "./show";
+
+class Input extends React.Component {
+  constructor(props) { //<----Method
+    super(props);
+    this.state = { //<----Initialize state
+      value: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) { //<---- Method/Set State
+    this.setState({ value: event.target.value });
+  }
+
+  render() { . //<-----Method/Return JSX/HTML
+    return (
+      <div>
+        <input
+          name="firstName"
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <Show value={this.state.value} />
+      </div>
+    );
+  }
+}
+export default Input;
+The above is an example of a stateful component, why? Three things
+1) we first initialize state 
+2) secondly we have methods on our constructor
+3) lastly we setState within our handleChange method. 
+These are three critical pieces of a stateful component.
+// In other file
+
+import React from "react";
+// stateless component
+function Show(props) {
+  return( //<----Return JSX/HTML
+    <p>{props.value}</p>
+    )
+}
+
+What is an Event in react? How do you create one?
+Events are the actions performed on the UI by the user. like switchon off is one event Adding the user is also one event.
+Events are similar to Html, Javscript events. In above code onChange is one event this will be trigged on changing the text in text field.
+
+How do you modularize the code in React?
+By using the export and import properties we can write the components seperatley in different files.
+
+How forms are created in React?
+Javascript functions are used for handling the form submission, so whenever any state gets set or updated based on that JSX will change and HTML get updated
+HTML form elements are maintain their own state in regular DOMs and update themselves based on user inputs.
+In react, state is contained in the stae property of the component and is only updated via setState()
+
+What is the significance of keys in react?
+Used to identify unique virtual DOM elements with their corresponsing data driving the UI
+Keys must be uniq number or string.
+Instead of re-rendering, with keys React Just Re-orders the elements.
+So that applications performance get increases.
+
+React Redux:
+============
+What is Redux?
+Redux is a state container or state management tool for Javascript apps
+
+How redux works? what are the 3 principles that redux follows?
+1) single source of truth: One Store for maintain the application state
+  any change made to any component in the application that has to go to the store and they receive the updates from store itself
+2) state is ReadOnly:  As react flow unirectionally, it is best tool to only read the state
+3) Changes are made with Pure functions: 
+State is Immutable in Redux
+
+List Down the components of Redux?
+
+Action:   Its an object that decribes what happend. What needs to be done
+Reducer:  It is a place to determine how the state will change. How it needs to be done. these are the pure functions
+Store:    Stae/Object tree of the entire application is saved in the store
+View:     Simply displays the daa provided by the store.
+
+How the data flow through redux?
+
+Passing the data as props to the container or component => actions=> Reducers=> OneStore => ProviderComponent => Re-render when store changes =>Container
+
+How actions are defined in Redux?
+Actions must have type property that indicates the type of action being performed.
+They must be defined as string constant.
+you can add more properties to i.
+Actions are created usig functions called Action creators.
+// need some example
+
+What is the Role of Reducer?
+Reducers are pure functions which specify how the application ste changes in response to an action.
+takes in the prev state and return the new state. returns the prev state if no work needs to be done.
+Determines what sort o updates needs to be done based on the type of action, and returns new values.
+
+What is the store Significance?
+A store is a javascript object which can hold the applications state and 
+it provides a few helper methods to accesss the state, dispatch the action and register listeneres
+With store data state can be synchronized from the server level to the client layer with out much hassle
+Which makes development of large applications easier and faster
+
+import {createStore} from 'redux'
+import myReducer from './reducers'
+let store= createStore(myReducer)
+
+ 
+React Router
+============
+Why do we need a router in react?
+Router is to navigate one page to other.
+react router helps in defining multiple routes inside the router with each route leading to a unique view.
+
+React router helps in adding new screens and flow to the application .
+Keeps the URL in sync with data that being displayed on the web page.
+
+Advantages of React Router?
+No need to manually set history value, separate packages for web and native platforms
+
+How React Router is different from conventional Routing
+Each View Corresponds to new file in conventional routing, where as single HTML page is involved the components gets updated
+A HTTP request sent to the server and corresponding html page is received, where as only history attribute is changed.
+Users actually navigates across different pages for each view, where as component gets updated
+
+
+
+
