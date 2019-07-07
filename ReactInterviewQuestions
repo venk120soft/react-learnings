@@ -235,6 +235,53 @@ We can set the state based on the props passed from the parent component
 Parent component can't change the value of state.
 State wont change inside the component.
 
+What is the Difference between pure components and impure components.
+Pure Components are said to be pure if the component provides same outpt for the same state and prps.
+Pure components are stateless, it doesnot hold the state of properties, where as Impure components are stores the prev, current, and possible feature state of the component.
+i.e impure components can set the state and maintain the state
+
+Differences between functional and class-Components?
+The most obvious one difference is the syntax. A functional component is just a plain JavaScript function which accepts props as an argument and returns a React element.
+ you cannot use setState() in your component. That’s the reason why they also get called functional stateless components.
+If you need a state in your component you will either need to create a class component or you lift the state up to the parent component and pass it down the functional component via props.
+Another feature which you cannot use in functional components are lifecycle hooks. The reason is the same like for state, all lifecycle hooks are coming from the React.Component which you extend from in class components.
+
+A class component requires you to extend from React.Component and create a render function which returns a React element
+
+So why should I use functional components at all?
+Functional component are much easier to read and test because they are plain JavaScript functions without state or lifecycle-hooks
+You end up with less code
+They help you to use best practices. It will get easier to separate container and presentational components because you need to think more about your component’s state if you don’t have access to setState() in your component
+
+Is setState() is async? Why is setState() in React Async instead of Sync?
+setState() actions are asynchronous and are batched for performance gains.
+This is because setState alters the state and causes rerendering. 
+This can be an expensive operation and making it synchronous might leave the browser unresponsive. 
+Thus the setState calls are asynchronous as well as batched for better UI experience and performance.
+
+What is the second argument that can optionally be passed to setState and what is its purpose?
+The second argument to the setState can be passed as callback function this will get called once the state gets set.
+
+What is the differnce between fat arrow functions and normal functions.
+1) The main difference is, In normal functions we will have internal scope and external scope and while using 'this', it refers to internal scope.
+where as for arrow functions we dont have internal scope, so it uses the lexical scope, on calling this referes to lexical(immediate parent) scope.
+2) By default if we dont pass anything to normal functions , we can access the arguments in it but for arrow functions if you want to access you must pass args.
+
+Ex: function test(){                           
+console.log(arguments[0] );
+}
+const test1=()=>{
+console.log(arguments[0]);
+}
+// test("Hello") // o/p: Hello
+// test1("Hello") // o/p: 
+to make arrow function print this o/p
+we can make use 
+const test1=(...something)=>{
+console.log(something[0])
+}
+// test1("Hello") // o/p: Hello
+
 How can you update the state of a component?
 using the this.setState();
 this.setState({name:"ramesh", age:"25"});
@@ -371,7 +418,5 @@ How React Router is different from conventional Routing
 Each View Corresponds to new file in conventional routing, where as single HTML page is involved the components gets updated
 A HTTP request sent to the server and corresponding html page is received, where as only history attribute is changed.
 Users actually navigates across different pages for each view, where as component gets updated
-
-
 
 
