@@ -1,0 +1,98 @@
+Putting all html in single component is very bad, react wont work in that way
+
+import ReactDom from 'react-dom';
+import React,{Component} from 'react';
+
+class ActualContainer extends Component{
+    constructor(props){
+        super(props);
+        
+        const myList = [
+            {
+                id: -3, 
+                value: "Hi! This is a simple todo list app made by REACT <3"
+            },
+            {
+                id: -2,
+                value: "Hover over todos and click on `X` to delete them!"
+            },
+            {
+                id: -1,
+                value: "Add new todos and come back any time later, I will save them for you!"
+            }
+        ];
+        this.state={
+            data:myList || []
+        }
+        this.onTextChange=this.onTextChange.bind(this);
+        this.addToList=this.addToList.bind(this);
+        this.removeFromList=this.removeFromList.bind(this);
+    }
+    onTextChange(event) {
+        console.log(event.target.value);
+        this.setState({
+            value: event.target.value
+        });
+    }
+
+    // Handler to add todo
+    addToList=(val) =>{
+        const todo = { 
+            value: val, 
+            id: window.id++
+        };
+        
+        this.state.data.push(todo);
+        // update state
+        this.setState({
+            data: this.state.data
+        });
+    }
+
+    removeFromList=(elementId)=>{
+        const list=this.state.data.filter(x=>x.id!==elementId);
+        this.setState({
+            data:list
+        })
+    }
+
+    Todo = ({listElement}) => {
+        // single todo 
+        return (
+            <p className="todos">
+                {listElement.value}
+                <span 
+                    className="removeBtn"
+                    onClick={this.removeFromList(listElement.id)}>
+                    x
+                </span>
+            </p>
+        );
+    };
+
+    render(){
+        return(<div> 
+            Hello its my page Showing up TODO List.
+            <input ref={node=>this.input=node} onChange={this.onTextChange}></input>
+            <button onClick={this.addToList}> Add to List</button>
+            <div>
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                Your Todo List is:
+                {console.log(this.state.data)}
+                <p>{this.state.data.map((listElement) => {
+                // passing todo and remove method reference
+                return (<this.Todo listElement={listElement}>listElement.value</this.Todo>);
+                //return (<p>{todo.value}</p>);
+            }) || "No Elements added yet"}</p>
+            </div>
+        </div>);
+    }
+}
+
+export default ActualContainer;
+ReactDom.render(<ActualContainer></ActualContainer>,document.getElementById('root'))
+
+
+
+
+Rather you can split each one into single component.
