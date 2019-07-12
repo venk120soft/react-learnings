@@ -1,0 +1,203 @@
+React doesnot have state management, so it needs some tool to manage the state.
+Good Resources to understand:
+https://redux.js.org/basics/reducers
+https://egghead.io/lessons/javascript-redux-supplying-the-initial-state
+
+Redux is satemanagement Tool, that does the statemanagement for react apps. As react Redux also follows uni directional data flow so its good tool to use.
+
+Starting Point:
+const stroe =createStore(rootReducers);
+
+render(<Provider store={store}>
+    <App/>
+    </Provider>,
+    document.getElementById('root')
+);
+
+Here rootReducers can be combined of multiple Reducers.
+
+const rootReducers= combineReducers({
+todos,
+visibilityFilter
+});
+
+export default rootReducer;
+
+reducers are atonomous, so each reducer will pass its own state initially
+
+const todos=(state=[], action)=>{
+switch(action.type){
+  case 'Add_TODO':
+    return [
+      ...state,
+      todo(undefined,action)
+    ];
+  case 'Toggle_TODO':
+    return state.map(t=>
+      todo(t,action)
+    );
+  default:
+    return state;
+}
+};
+
+const visibilityFiler=(state='Show_All',action)=>{
+switch(action.type){
+  case 'Set_Visibile_Filter':
+    return action.filter;
+  default:
+    return state;
+    
+}
+}
+
+
+// With this the rootReducers intial state will be overridden by the persistedState
+// In Persistant state we have defined todos only, so in tootReducers the todos will replaced by the persistant state
+// and visibility filter show as in rootReducer(visibility Filter) defines.
+// and also note that as we are not passing the actions from here for the respective reducer it will hit the default(bcz actions are undefined)
+const stroe =createStore(rootReducers, persistedState);
+
+const persistedState={
+  todos: [{
+    id:'0',
+    text:'Welcome',
+    completed: false,
+  }],
+};
+
+In Redux, We have single store for maintaining all the application state. Actions are the only source to Store. 
+When We create the store the intial state of the store is determined by the root reducer
+
+When ever something happend or some event triggerd we should dispacth the action to the Store.
+
+All it does is it will send the payload to the store, actions should be uniq, so we name them using string constants examples for actionCreators.
+
+Action Creators are regular  javascript functions, we can define however we want like arrow functions also
+Some of Examples of Actions:
+
+// Actions constants
+const myActions={
+apiStarted:"apiStarted",
+isFetchingItmes:"isFetchingItmes",
+refreshDataRecords:"refreshDataRecords",
+loadingError:"loadingError",
+dataRequests:"dataRequests"
+}
+
+export const getDataRequestssAction = (
+  items: IImmutableList<IImmutableMap<DataRequestsSchema>>
+) => {
+  return {
+    type: myActions.dataRequests,
+    payload: items
+  };
+};
+
+export const myApiStartedAction = (
+  searchTerm: string,
+  selectedFilter: string,
+  resetDataRecordsList: boolean
+) => {
+  return {
+    type: myActions.apiStarted,
+    payload: {
+      searchTerm: searchTerm,
+      selectedFilter: selectedFilter,
+      resetDataRecordsList: resetDataRecordsList
+    }
+  };
+};
+
+export const setIsFetchingItemsAction = (isFetching: boolean) => {
+  return {
+    type: myActions.isFetchingItmes,
+    payload: isFetching
+  };
+};
+export const refreshDataRecordsAction = () => {
+  return {
+    type: myActions.refreshDataRecords
+  };
+};
+
+const dataRecordsErrorAction = (error: Error) => {
+  return {
+    type: myActions.loadingError,
+    payload: error,
+    error: true
+  };
+};
+
+// Writing the data fetching logic in action calling an api to get the data
+// When we calling this, 
+export const dispatchSetDataRequestsAction = (
+  searchTerm: string = '',
+  selectedFilterName: string = ''
+) => {
+  return async (dispatch: MDispatch) => {
+    try {
+      // this is to set the selected filter to highlight
+      dispatch(myApiStartedAction('', selectedFilterName, false));
+      dispatch(refreshDataRecordsAction());
+      dispatch(setIsFetchingItemsAction(true));
+      // data fetching from an api
+      const data = await getDataRequests(searchTerm, selectedFilterName);
+      if (data !== null) {
+        const newDataRequests = data.get('MyDataAccessRequests');// MyDataAccessRequests are the property in ap response
+        dispatch(getDataRequestssAction(newDataRequests));
+      }
+
+      dispatch(setIsFetchingItemsAction(false));
+    } catch (err) {
+      dispatch(setIsFetchingItemsAction(false));
+      dispatch(dataRecordsErrorAction(err));
+    }
+  };
+};
+// Other way of declaring action creators
+// No Need to use Return statement
+// while not using the return statement we should replace block expression( {} ) to object expression ( () )
+// i.e change curly braces to paranthesis that means we are o
+export const sampleAction=()=>({ // here added (
+      type:"SampleAction",
+      id: (nextId++).toString()
+  });// here added )
+export const sampleAction1=(text)=>({
+      type:"SampleAction1",
+      id: (nextId++).toString(),
+      text
+  });
+export const sampleAction2=(text)=>({
+      type:"SampleAction2",
+      text
+});
+export const mapStateToProps=(state, props)=>({
+  active:props.filter === state.visibilityFilter
+});
+export const mapDispatchToProps=(dispatch, props)=>{
+return {
+  onClick:()=>{
+    dipatch(setVisibilityFilter(props.filter));
+    }
+    }
+};
+
+export const mapDispatchToProps=(dispatch, props)=>({
+  onClick:()=>{
+    dipatch(setVisibilityFilter(props.filter));
+    }
+});
+
+export const mapDispatchToProps=(dispatch, props)=>({
+  onClick(){
+    dipatch(setVisibilityFilter(props.filter));
+    }
+});
+Once the action dipatches, store will receive the state and new props, Then store will pass the prev state and props to the reducer. 
+Reducer will return the new state with the props passed.
+Examples for the Reducers:
+=========================
+
+
+
