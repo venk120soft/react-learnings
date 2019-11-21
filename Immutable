@@ -48,8 +48,15 @@ ImmutableArrays:
 var arr = new ImmutableArray([1, 2, 3, 4]);
 var v2 = arr.push(5);
 
+// using concat Idom it will create new array
+var bArray = [1,2,3];
+var v3 = [].concat(bArray);
+v3[1] = 7;
+
 arr.toArray(); // [1, 2, 3, 4]
 v2.toArray();  // [1, 2, 3, 4, 5]
+bArray.toArray(); // [1,2,3]
+v3.toArray(); // [1, 7, 3]
 
 ImmutableMap:
 ============ 
