@@ -3,10 +3,11 @@ Good Resources to understand:
 https://redux.js.org/basics/reducers
 https://egghead.io/lessons/javascript-redux-supplying-the-initial-state
 
-Redux is satemanagement Tool, that does the statemanagement for react apps. As react Redux also follows uni directional data flow so its good tool to use.
+Redux is sate management Tool, that does the state management for react apps.
+As react Redux also follows uni directional data flow so its good tool to use.
 
 Starting Point:
-const stroe =createStore(rootReducers);
+const stroe = createStore(rootReducers);
 
 render(<Provider store={store}>
     <App/>
@@ -46,11 +47,9 @@ switch(action.type){
   case 'Set_Visibile_Filter':
     return action.filter;
   default:
-    return state;
-    
+    return state;    
 }
 }
-
 
 // With this the rootReducers intial state will be overridden by the persistedState
 // In Persistant state we have defined todos only, so in tootReducers the todos will replaced by the persistant state
@@ -70,7 +69,6 @@ In Redux, We have single store for maintaining all the application state. Action
 When We create the store the intial state of the store is determined by the root reducer
 
 When ever something happend or some event triggerd we should dispacth the action to the Store.
-
 All it does is it will send the payload to the store, actions should be uniq, so we name them using string constants examples for actionCreators.
 
 Action Creators are regular  javascript functions, we can define however we want like arrow functions also
@@ -78,11 +76,11 @@ Some of Examples of Actions:
 
 // Actions constants
 const myActions={
-apiStarted:"apiStarted",
-isFetchingItmes:"isFetchingItmes",
-refreshDataRecords:"refreshDataRecords",
-loadingError:"loadingError",
-dataRequests:"dataRequests"
+    apiStarted:"apiStarted",
+    isFetchingItmes:"isFetchingItmes",
+    refreshDataRecords:"refreshDataRecords",
+    loadingError:"loadingError",
+    dataRequests:"dataRequests"
 }
 
 export const getDataRequestssAction = (
@@ -115,6 +113,7 @@ export const setIsFetchingItemsAction = (isFetching: boolean) => {
     payload: isFetching
   };
 };
+
 export const refreshDataRecordsAction = () => {
   return {
     type: myActions.refreshDataRecords
@@ -147,7 +146,6 @@ export const dispatchSetDataRequestsAction = (
         const newDataRequests = data.get('MyDataAccessRequests');// MyDataAccessRequests are the property in ap response
         dispatch(getDataRequestssAction(newDataRequests));
       }
-
       dispatch(setIsFetchingItemsAction(false));
     } catch (err) {
       dispatch(setIsFetchingItemsAction(false));
@@ -155,6 +153,7 @@ export const dispatchSetDataRequestsAction = (
     }
   };
 };
+
 // Other way of declaring action creators
 // No Need to use Return statement
 // while not using the return statement we should replace block expression( {} ) to object expression ( () )
@@ -163,18 +162,22 @@ export const sampleAction=()=>({ // here added (
       type:"SampleAction",
       id: (nextId++).toString()
   });// here added )
+
 export const sampleAction1=(text)=>({
       type:"SampleAction1",
       id: (nextId++).toString(),
       text
   });
+
 export const sampleAction2=(text)=>({
       type:"SampleAction2",
       text
 });
+
 export const mapStateToProps=(state, props)=>({
   active:props.filter === state.visibilityFilter
 });
+
 export const mapDispatchToProps=(dispatch, props)=>{
 return {
   onClick:()=>{
@@ -196,8 +199,6 @@ export const mapDispatchToProps=(dispatch, props)=>({
 });
 Once the action dipatches, store will receive the state and new props, Then store will pass the prev state and props to the reducer. 
 Reducer will return the new state with the props passed.
+
 Examples for the Reducers:
-=========================
-
-
-
+==========================
