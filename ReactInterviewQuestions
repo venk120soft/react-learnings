@@ -419,4 +419,84 @@ Each View Corresponds to new file in conventional routing, where as single HTML 
 A HTTP request sent to the server and corresponding html page is received, where as only history attribute is changed.
 Users actually navigates across different pages for each view, where as component gets updated
 
+How do you access the Grand Child Components in React?
+1) Using Prop Drilling
+2) Using Composition
+3) Using Context Provider
 
+What is Prop Drilling? How can you solve the prop drilling problem?
+Passing the props to its child components to until its nested component who needs the props.
+Problem with Prop Drilling is even though child components doesnt use props it should be passed throw all child components,
+until it reachs the grand child component.
+
+In below code grandChild1 only needs the user but we are passing to all its child this is called prop Drillin
+
+function Main({userName}){
+  return (<div>
+  <h1>Hello this is Main</h1>
+  <Child user={user}>
+  </div>);
+}
+
+function Child({user}){
+  return (<div>
+  <grandChild1 user={user}>
+  </div>);
+}
+function grandChild({user}){
+  return (<div>
+  <grandChild1 user={user}>
+  </div>);
+}
+
+function grandChild1({user}){
+  return (<div>
+  <h1>Welcome {user.UserName}</h1>
+  </div>);
+}
+
+// This can be replaced by 
+
+function Main({userName}){
+  return (<div>
+  <h1>Hello this is Main</h1>
+  <Child >
+    <grandChild>
+      <garndChild1 user={user}>
+      </garndChild1>
+    </gradChild>
+  </Child>
+  </div>);
+}
+
+function Child({children}){
+  return (<div>
+  {children}
+  </div>);
+}
+function grandChild(){
+  return (<div>
+  {children}
+  </div>);
+}
+
+function grandChild1({user}){
+  return (<div>
+  <h1>Welcome {user.UserName}</h1>
+  </div>);
+}
+
+This can also be more simplified with the Context.
+
+let Context= React.createContext()
+
+<Context.Provider value={{user}}>
+<MainContent>
+</Context.Provider>
+
+function grandChild1({user}){
+ let {user} = React.UseContext(Context);
+ return (<div>
+  <h1>Welcome {user.UserName}</h1>
+  </div>);
+}
