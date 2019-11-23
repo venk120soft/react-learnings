@@ -29,6 +29,41 @@ Ans: We can make this decision in shouldComponetUpdate and set it to false.
   if you use shouldComponetUpdate inside the PureCoponent then it complains
 
 4) Explain Error Boundaries?
+https://blog.bitsrc.io/understanding-error-boundaries-in-react-e58f15ae1f38
+An Error Boundary in React Class Component that defines one or both of static getDerivedStateFromError() or componentDidCatch()lifecycle methods. 
+The first one, static getDerivedStateFromError() is used to render a fallback user interface after an error has been thrown and 
+the second one, componentDidCatch() is used to log error information to an error tracking service say Sentry. This is the official syntax below:
+
+Static getDerivedStateFromError
+This is the first lifecycle method React provides for handling Error Boundaries. 
+It receives the error as a parameter and returns the new error state object in the body.
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+     this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children; 
+  }
+}
+
+Then you can use something like
+<ErrorBoundary>
+  <MyWidget />
+</ErrorBoundary>
 
 5) Best Life cycle method to call an api ?
  render props  // using childern component as functions 
@@ -48,6 +83,13 @@ We can use if else, ?: and &&
 example: if(test=true){return <div>hello</div>}else{return <div>hey</div>}
 
 9) What is fragments and why do we use it?
+Fragments let you group a list of children without adding extra nodes to the DOM.
+<React.Fragment>
+<td>hello</td>
+<td>hi</td>
+</React.Fragment>
+Short for form of <React.Frament> is <> </>
+https://reactjs.org/docs/fragments.html
 
 10) How to do code splitting? or how to do lazy loading?
 
@@ -71,6 +113,15 @@ If we use functions for handling Events then try to replace with arrow functions
 14) Just write todo list application using React
 
 
+15) What is render props?
+https://reactjs.org/docs/render-props.html
+The term “render prop” refers to a technique for sharing code between React components using a prop whose value is a function.
+
+A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
+<DataProvider render={data => (
+  <h1>Hello {data.target}</h1>
+)}/>
 
 In Javascript we have methods and properties
 What is the difference between functional component and Class component and what are the benifits? Why one over other?
@@ -85,6 +136,8 @@ Javascript clousers?
 
 Angular :
 What is the difference between ng-emit and ng-broadcast?
+ng-broadcast  will apply the value to all its nested components
+ng-emit update the value from nested component to its root component
 What is the difference between ng-if and ng-show? why one over other?
 what is the difference between promices and observables
 what is ng-watch?
@@ -102,12 +155,12 @@ It uses Virtual DOM, it does server side rendering.
 Follows the Uni Directional Data flow, i.e one way data binding
 
 Major Advantage of react.
-Increaces application performance. Easy to write test cases for UI components.
+Increases the application performance. Easy to write test cases for UI components.
 Can be used on client as well as server side.
 React js is easy to integrate with other third party libraries like angular.
 
 What are the limitations of react?
-React is not a fulll scale framework, i.e it is Just the View in MVC
+React is not a full scale framework, i.e it is Just the View in MVC
 Angular JS is Complete MVC framework, where as React is only view part of MVC. 
 React Library is quite large.
 Uses inline templating and JSX
@@ -240,10 +293,10 @@ Pure Components are said to be pure if the component provides same outpt for the
 Pure components are stateless, it doesnot hold the state of properties, where as Impure components are stores the prev, current, and possible feature state of the component.
 i.e impure components can set the state and maintain the state
 
-Differences between functional and class-Components?
+Differences between functional component and class component?
 The most obvious one difference is the syntax. A functional component is just a plain JavaScript function which accepts props as an argument and returns a React element.
  you cannot use setState() in your component. That’s the reason why they also get called functional stateless components.
-If you need a state in your component you will either need to create a class component or you lift the state up to the parent component and pass it down the functional component via props.
+If you need a state in your component you will either need component or you lift the state up to the parent component and pass it down the functional component via props.
 Another feature which you cannot use in functional components are lifecycle hooks. The reason is the same like for state, all lifecycle hooks are coming from the React.Component which you extend from in class components.
 
 A class component requires you to extend from React.Component and create a render function which returns a React element
