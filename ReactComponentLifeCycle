@@ -10,7 +10,8 @@ We have 2 phases in react lifecycle 1) render 2) re-render
 
 In here the new props will set to the state and the new state will return. and it is static method so that user cannot access with the this keyword to set the state.
 
-3) based on the new state return from the getDerivedStateFromProps, the component will be rendered. In here we should return only JSX output
+3) based on the new state return from the getDerivedStateFromProps, Then the control will move to componentWillMount In here, the component will be rendered. 
+In here we should return only JSX output
 
 4) After the DOM is ready the control will goto ComponentDidMount method and get the data from third party apis then update the state.
 
