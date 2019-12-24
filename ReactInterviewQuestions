@@ -177,6 +177,31 @@ return (<div>
 )
 }
 
+What is defaultProps in React?
+defaultProps is a property in React component used to set default values for the props argument. 
+It will be changed if the prop property is passed. This will be applied to both class and functions
+default props will helps to remove falling values like {this.props.prop1 || "myName"} 
+
+class ReactComp extends React.Component {}
+ReactComp.defaultProps = {}
+// or
+function Reactcomp(props) {}
+ReactComp.defaultProps = {}
+// or
+class ReactComp extends React.Component {
+    static defaultProps = {}
+}
+// or
+interface myProps{
+prop1:string,
+prop2:number
+}
+class ReactComp extends React.Component<myProps> {
+ static defaultProps={
+ prop1:"myName",
+ prop2:25
+ }
+}
 What do you understand by Virtual DOM?
 Virtual DOM is lightweight Javascript Object, which is the copy of the real DOM.
 It works in 3 simple steps:
