@@ -92,6 +92,25 @@ Short for form of <React.Frament> is <> </>
 https://reactjs.org/docs/fragments.html
 
 10) How to do code splitting? or how to do lazy loading?
+Code splitting can be done using import, React.Lazy
+React.Lazy make sures, the component will be rendered when ever its required
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+
+const Home = lazy(() => import('./routes/Home')); // this is called named export 
+const About = lazy(() => import('./routes/About'));
+
+const App = () => (
+  <Router>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+      </Switch>
+    </Suspense>
+  </Router>
+);
 
 11) What is redux middillware?
 we used redux thunk, it is used to handle the state of the components, Whenever some action performed, it dispatches the promise to the store 
