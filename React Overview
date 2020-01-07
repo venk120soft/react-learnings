@@ -2,16 +2,19 @@ Overview of react
 https://www.codementor.io/blog/5-essential-reactjs-interview-questions-du1084ym1
 
 React is an open-source JavaScript library created by Facebook for building complex, interactive UIs in web and mobile applications.
-I recently migrated an application originally written in AngularJS to React, and one of the things I loved most was The core purpose is to build only view in MVC. 
+I recently migrated an application originally written in AngularJS to React, and 
+Oe of the things I loved most is the core purpose is to build only view in MVC. 
 
 In React the UI is split into components. Components can have child components. 
-Components are independent, it can be reusable in different parts of application, so testing the UI becomes easy. React uses JSX syntax, which stands for javascript xml, which utilizes the expressiveness of Javascript with HTML
-the browser understands javascript functions only so, In react we have transpiler called bable which will convert the JSX in to Javascript functions and html
+Components are independent, it can be reusable in different parts of application, so testing the UI becomes easy. 
+React uses JSX syntax, which stands for javascript xml, which utilizes the expressiveness of Javascript with HTML.
+The browser understands javascript functions only so, 
+    In react we have transpiler called bable which will convert the JSX into Javascript functions and html
 
 In Browsers, rendering the DOM is really costly and time consuming. The main feature of react is virtual DOM.
 
 Virtual DOM is light weght javascript object which is a copy of real DOM.
-It works in a way such that whenever any underlaying data changes, the representaion of UI in virtaul DOM gets re-render, and the changes from previous DOM with new one gets calculated
-then the only changes is applied to the real DOM.
-This way we can re-render the parts of Real DOM without rendering all, its cost effective and faster
+It works in a way such that whenever any underlaying data changes, the representaion of UI in virtaul DOM gets re-render, 
+and the changes from previous DOM with new one gets calculated then the only changes is applied to the real DOM.
 
+This way we can re-render the parts of Real DOM without rendering entire DOM, it is cost effective and faster.
