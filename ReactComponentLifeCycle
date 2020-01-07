@@ -5,38 +5,42 @@ In React, life methods are changing from one version to other. some are deprecat
 We have 2 phases in react lifecycle 1) render 2) re-render
         ## render
 1) When react page starts loading, control goes to the Constructor.
-  In Constructor, We intialize the state to its intail values. 
-2) After Intializing the values, control goes to getDerivedStateFromProps method wich is also called ComponentWillReceiveProps(which is deprecated now)
+  In Constructor, We Initialize the state to its Initial values. 
+2) After Initializing the values, control goes to getDerivedStateFromProps method wich is also called ComponentWillReceiveProps(which is deprecated now)
 
-In here the new props will set to the state and the new state will return. and it is static method so that user cannot access with the this keyword to set the state.
+        In here the new props will set to the state and the new state will return. 
+        and it is static method, so user cannot access with the this keyword to set the state.
 
-3) based on the new state return from the getDerivedStateFromProps, Then the control will move to componentWillMount In here, the component will be rendered. 
+3) Control will move to componentWillMount In here, the component will be rendered. In this method you can assign values to the variables 
 In here we should return only JSX output
 
-4) After the DOM is ready the control will goto ComponentDidMount method and get the data from third party apis then update the state.
+4) After the DOM is ready the control will goto componentDidMount method and get the data from third party apis then update the state.
+        you can also add any any event listener you want 
+        document.addEventListener('focus', (event)=>{}, true);
 
         ## re-render
 5) Again getDerivedStateFromProps method will be called and return new state.
 6) based on the new state we can decide whether we render the component or not in shouldComponentUpdate method.
   this method takes prev state, new state and compares it if true we should render the component else we can skip
 7) render:  this will be decided based on the shouldComponentUpdate method
-8) getSnapshotBeforeUpdate / ComponentWillUpdate. In here actual reder takes place 
+8) getSnapshotBeforeUpdate / ComponentWillUpdate. In here actual render takes place 
 9) ComponentDidUpdate() In this method we can call third party api and update them.
 10) ComponentWillUnMount() here the component will dies.
-
-   Class MyCoponent{
-   // Intializingg values
+ you can remove event listeners document.removeEventListener('focus', (event)=>{}, true);
+ 
+   Class MyComponent extends React.Component{
+   // Initializing values
    constructor(props:ISomeProps){
-   super(props);
-   const {porp11, prop2}=props;
-    this.state={
-           listItems,
-           columns,
-           prop1:listItems,
-           prop2: columns
-           };
+           super(props);
+           const {porp11, prop2}=props;
+            this.state={
+                   listItems,
+                   columns,
+                   prop1:listItems,
+                   prop2: columns
+                   };
    }
-   // setting the props and returningg new state
+   // setting the props and returning new state
    public static getDerivedStateFromProps(nextProps:ISomeProps, prevState:ISomeState){
      let newState=null;
      if(prevState.prop1!==nextProps.prop1)
@@ -63,16 +67,15 @@ In here we should return only JSX output
     
     // this will get called after the render method and DOM is ready.
     public componentDidMount():void{
-      // we can call any api and set the state here
+      // we can call any api or event and set the state here or add some event
     }
     
      // this will only call on re rendering the component
      public shouldComponentUpdate(nextState: ISomeProps): boolean {
         // dont update te component if the states are same
         if (this.props==newState) {
-          this._resetComponent();
+                this._resetComponent();
         }
-
         return true;
       }
       
@@ -85,7 +88,7 @@ In here we should return only JSX output
       }
 
       public componentDidUpdate():void{
-      // we can call any api and set the state here
+            // we can call any api and set the state here
       }
       
       public componentWillUnMount():void{
