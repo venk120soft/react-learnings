@@ -1,0 +1,74 @@
+Managing the state with Redux:
+
+Setting up the Redux One Store.
+
+Redux helps to maintain the state for the components. It is One way only
+
+In the solution src folder
+We need:
+1) Actions
+2) Reducers
+3) Components
+
+
+Actions:
+counterActions.js
+
+export const INCREAMENT = "INCREMENT";
+export const DECREAMENT = "DEREMENT";
+export const incrementCount = {
+  type: INCREMENT
+};
+export const decrementCount = {
+  type: DECREMENT
+}
+
+Reducers:
+Reducers are pure functions
+counterReducer.js
+import {INCREAMENT, DECREAMENT} from '../Actions/counterActions';
+
+export counterReducer =(state=20,event){
+  switch(event.type){
+    case INCREMENT:
+      return state+=1;
+    case DECREMENT:
+      return state+=1;
+    default:
+      return state;
+  }
+}
+
+// Now we can have plenty of reducers defined then we should combine them into single reducer by providing them a key to each reducer
+applicationReducer.js
+
+import combineReducer from 'redux';
+import {counterReducer} from './counterReducer';
+
+export applicationReducer= combineReducer({
+  CounterReducer: counterReducer,
+  // other reducers with user defined keys
+  // ex: MyXYZname: myReducer
+  })
+
+// now lets register them in to store
+store.js
+
+import createStore from 'redux';
+import applicationReducer from './applicationReducer';
+
+export default const store = createStore(applicationReducer);
+
+// Now the store hasbeen created need to subcribe the root element to store so that any change is happening will be reflected on UI
+
+In index.js
+import store from './store';
+
+const render =() => ReactDOM.render(<App />, document.getElementById('root'));
+render(); // for rendering the web page
+
+// Registering with the store
+store.subscribe(render);
+
+// Using The Store in components
+Components:
