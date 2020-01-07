@@ -6,50 +6,48 @@ It was developed on 2009 by facebook developer, Introduced by facebook on May 20
 
 React is concerned with the components that utilizes the expressiveness of javascript with a Html- like template syntax.
 
-Javascript + Html = React JS
-
 It is basically a view in the MVC
 
 The React has 3 Main aspects or advantanges.
 1) Virtual DOM: Virtual DOM works in 3 simple steps.
     i) when ever any underlying data changes the entire UI is re-rendered in the virtual DOM representation
    ii) The difference between previous DOM representation and new one is calculated. 
-  iii) once the calculations are done Real DOM is updated with the only the things that have been changed.
+  iii) once the calculations are done Real DOM is updated with only the things that have been changed.
     its like a patch, patches are applied to the affected area.
-    So by this we can make sure that no memory wastage
+    With this we can make sure that no memory wastage by avoiding loading entire page.
 2) One way Data binding
-3)Serverside rendering
+3) Client and Serverside rendering
 
 JSX: JSX stands for javascript xml.
-html+JS=JSX
+Javascript + Html = JSX (used by React JS to show UI)
 
 var MyComponent=React.createClass({
-render : function(){
-return (
-<h1>Hello World</h1>
-);
+    render : function(){
+    return (
+    <h1>Hello World</h1>
+    );
 }})
 
 When ever you want to work with multiple tags that should be enclosed with the single tag
 //Using Nested elements
 //The below code throws an error
 var MyComponent=React.createClass({
-render : function(){
-return (
-<h1>Hello World</h1>
-<h2>Hay this is another tag</h2>
-);
+    render : function(){
+    return (
+        <h1>Hello World</h1>
+        <h2>Hay this is another tag</h2>
+    );
 }})
 
 //The below code works fine. 
 var MyComponent=React.createClass({
 render : function(){
-return (
-<div>
-<h1>Hello World</h1>
-<h2>Hay this is another tag</h2>
-</div>
-);
+    return (
+        <div>
+        <h1>Hello World</h1>
+        <h2>Hay this is another tag</h2>
+        </div>
+    );
 }})
 
 //Specifying attributes
@@ -57,23 +55,23 @@ var style1={color:red};
 var style2={color:yellow};
 var MyComponent=React.createClass({
 render : function(){
-retur
-<div style="style1">
-<h1 style="style2">Hello World</h1>
-<h2>Hay this is another tag</h2>
-</div>
-);
+    return (
+        <div style="style1">
+        <h1 style="style2">Hello World</h1>
+        <h2>Hay this is another tag</h2>
+        </div>
+    );
 }})
 
 //Adding javascript expressions inside the tags
 var MyComponent=React.createClass({
 render : function(){
-return (
-<div>
-<h1>Hello World</h1>
-<h2>The sum is {2+5}</h2>
-</div>
-);
+    return (
+        <div>
+        <h1>Hello World</h1>
+        <h2>The sum is {2+5}</h2>
+        </div>
+    );
 }})
 
 Components:
@@ -86,9 +84,8 @@ Components:
 6) it can further split into smaller components.
 
 There are 2 types of components we have 
-1) stateful : Rememeber everything it does
-  it can change states
-  contains knowledge of paste, present and possible future state changes
+1) stateful : These components will Rememeber everything it does and it can change states.
+  it contains knowledge of paste, present and possible future state changes
   it receives information from the stateless componennts if state change is required.
   
 2) stateless: Doesnot remember anything it does.
@@ -96,28 +93,28 @@ There are 2 types of components we have
 
 var Header=React.createClass({
 render : function(){
-return (
-<h1>This is Header</h1>
-);
+    return (
+        <h1>This is Header</h1>
+    );
 }})
 
 var Footer=React.createClass({
 render : function(){
-return (
-<h1>This is footer</h1>
-);
+    return (
+        <h1>This is footer</h1>
+    );
 }})
 
 var MyComponent=React.createClass({
 render : function(){
-return (
-<div>
-<Header/>
-<h1>Hello World</h1>
-<h2>The sum is {2+5}</h2>
-<Footer/>
-</div>
-);
+    return (
+        <div>
+        <Header/>
+        <h1>Hello World</h1>
+        <h2>The sum is {2+5}</h2>
+        <Footer/>
+        </div>
+    );
 }})
 
 Props:
@@ -127,28 +124,28 @@ whether components are declared as function or class it must never change it pro
 such components are called pure functions
 
 function sum(x,y){
-return x+y;
+    return x+y;
 }
 All React components must act like pure functions with respect to their props
 var Header=React.createClass({
 render : function(){
-return (
-<div>
-<h1> Hello {This.props.name} </h1>
-<h1>This is Header</h1>
-</div>
-);
+    return (
+        <div>
+        <h1> Hello {This.props.name} </h1>
+        <h1>This is Header</h1>
+        </div>
+    );
 }})
 var MyComponent=React.createClass({
 render : function(){
-return (
-<div>
-<Header name="Venkatesh"/>
-<h1>Hello World</h1>
-<h2>The sum is {2+5}</h2>
-<Footer/>
-</div>
-);
+    return (
+        <div>
+        <Header name="Venkatesh"/>
+        <h1>Hello World</h1>
+        <h2>The sum is {2+5}</h2>
+        <Footer/>
+        </div>
+    );
 }})
 
 o/p> hello Venkatesh
@@ -164,24 +161,24 @@ Which creates dynamic and interactive components.
 
 var Footer=React.createClass({
 //setting the state.
-getIntialState:function(){
-return {
-user:"Venkatesh",
-id:101
-}
+getInitialState:function(){
+    return {
+        user:"Venkatesh",
+        id:101
+    }
 },
 render : function(){
 //changing the state after 5 seconds
-setTimeout(()=>{this.setState({user:"swathi",id:201})},5000)
+setTimeout(()=> { this.setState({user:"swathi",id:201})} , 5000)
 //reading the state
-return (
-<div>
-<h2>the user is {this.state.user} <br/>
-the ID is {this.state.ID}
-</h2>
-<h1>This is footer</h1>
-</div
-);
+    return (
+        <div>
+        <h2>the user is {this.state.user} <br/>
+        the ID is {this.state.ID}
+        </h2>
+        <h1>This is footer</h1>
+        </div
+    );
 }})
 ============================================================================================================================
 //Life Cycle of the components.
@@ -204,6 +201,7 @@ In Intial Phase
   if you wish to render nothing then we can return null or false.
 componentDidMount()
   This method will called immediatly after component rendered and Placed in DOM at this point we can query any dom operations.
+  In this method we can call api to fetch data componentDidMount based on the data we fetch UI gets updated
   
 Note: Except render method all the methods are called only once.
 
@@ -215,7 +213,7 @@ componentWillUpdate()
 render()
   
 ComponentDidUpdate()
-
+    This will be called aftrer component rendered. In this method we can call api to fetch data componentDidMount
 PropsChangePhase:
   componentsWillReceiveProps(): 
   shouldComponentUpdate()
@@ -225,7 +223,7 @@ PropsChangePhase:
 
 UnMountingPhase:
 componentWillUnMount():
-any cleanups can be performed here, removing the event listenders and etc.
+any cleanups can be performed here, removing the event listeners and etc.
 
 
 ==================================================================================================
