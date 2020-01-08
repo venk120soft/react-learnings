@@ -11,12 +11,13 @@ Why Would you use react in your project?
   iv) JSX syntax
 1) Why do we use arrow functions in react? and what is the advantage of using arrow functions?
 Ans: Arrow functions doesnot have its own this, so its takes from its lexical scope(immediate class scope).
-funnctions have its own this that is the reason we are going for arrow functions and implemnting the properties.
+functions have its own this. that is the reason we are going for arrow functions and implemnting the properties.
 i.e it allows to bind the context of components properly since auto-binding is not available by default in ES6. 
 So when we use arrow functions, the scope points to the lexical hence binding the functions is not necessary.
 Explanation:
-In react, we can have onClick handles, which is actually a properties of a class. If you want to access the this keyword inside the function inside the function then that would points to within thhe scope not the global scope.
-so the solution is we can create arrow functions and use this keywords whhichh points to class scope.
+In react, we can have onClick handles, which is actually a properties of a class. 
+   If you want to access the this keyword inside the function, then that would points to within the scope not to the global scope.
+so the solution is we can create arrow function and use this keyword which points to class scope.
 also we can bind this property inside the constructor.
 
 2) what is the difference between method and property?
@@ -65,7 +66,7 @@ Then you can use something like
   <MyWidget />
 </ErrorBoundary>
 
-5) Best Life cycle method to call an api ?
+5) Best Life cycle method to call an api ? componentDidMount()
  render props  // using childern component as functions 
  context-api pattern
  presentation component pattern
@@ -84,11 +85,11 @@ example: if(test=true){return <div>hello</div>}else{return <div>hey</div>}
 
 9) What is fragments and why do we use it?
 Fragments let you group a list of children without adding extra nodes to the DOM.
-<React.Fragment>
-<td>hello</td>
-<td>hi</td>
-</React.Fragment>
-Short for form of <React.Frament> is <> </>
+  <React.Fragment>
+      <td>hello</td>
+      <td>hi</td>
+  </React.Fragment>
+Short form of <React.Frament> is <> </>
 https://reactjs.org/docs/fragments.html
 
 10) How to do code splitting? or how to do lazy loading?
@@ -119,8 +120,8 @@ and it will keep track of the asyn call and based on the returned values state g
 12) How to optimize react app?
 // try to find the parameters, and applicaion 
 Try to apply the lazy loading for certain routes using React.Lazy<>
-If is there any unwanted setstates are theere then try to handle that in shouldComponentUpdate, if the state are not equal then only render it.
-If we find the api are slow then we may need some improvedments in the backend
+If is there any unwanted setstates are there then try to handle that in shouldComponentUpdate, if the state are not equal then only render it.
+If we find the api are slow then we may need some improvements in the backend
 Look for how the state is getting update, if they updating the state directly instead of using Immutable then change that to immutable
 Assets are loading slowly you can change CDN's
 Sometimes functional component gives more performance than the class components.
@@ -190,10 +191,10 @@ It Utilizes the expressiveness of Javascript with HTML
 It bootsup the JS performance.
 JSX expression must have only one Outermost element
 eg: public render(){
-return (<div>
-// can be many elements like div p li but we must have only one outer element
-</div>
-)
+  return (<div>
+    // can be many elements like div p li but we must have only one outer element
+    </div>
+  )
 }
 
 What is defaultProps in React?
@@ -268,8 +269,7 @@ Javascript functions which takes in arbitary inputs and returns HTML Representai
 Explaing the purpose of render() in react?
 Every component must have render().
 Render function returns single react element which is the representaion of native DOM component
-It must have only one outer element.
-Should be a Pure function
+It must have only one outer element. Should be a Pure function
 
 What is Pure function?
 Pure functions are the functions which do not change the state or logic. it should give the same output it should not depend on the state.
@@ -292,23 +292,23 @@ constructor(props){
       }
 }
 public render():JSXElement{
-return (<div>
-            <p>state values are {this.state.name} with Id {this.state.id}</>
-            <p>It is Including one more copmonent</p>
-            // without props
-            // <SomeOtherComponentWithoutProps/>
-            // With Props
-            <Header name="Venkatesh" id="58"/>
-        </div>)
+    return (<div>
+                <p>state values are {this.state.name} with Id {this.state.id}</>
+                <p>It is Including one more copmonent</p>
+                // without props
+                // <SomeOtherComponentWithoutProps/>
+                // With Props
+                <Header name="Venkatesh" id="58"/>
+            </div>)
 }}
 
 class Header(props){
 public render():JSXElement{
-return (<div>
-<h1>Hello, Wellcome {props.name}</h1>
-<h1>Your Id is {props.id}
-</div>
-);
+    return (<div>
+    <h1>Hello, Wellcome {props.name}</h1>
+    <h1>Your Id is {props.id}
+    </div>
+    );
 }}
 // Append in the component to element with id content. it is place holder for the component
 ReactDOM.render(<MyComponent age="28"/>, document.getElementById('content') )
@@ -327,14 +327,14 @@ When we updating the state using this.setState() the DOM gets re rendered this i
 
 What is the difference between state and props?
 props are readonly, within the component we cant set the values for props bcz those are readonly.
-Props can be passed from parent to child component.to parent component can change the props value.
+Props can be passed from parent to child component.Parent component can change the props value.
 We can set the state based on the props passed from the parent component
 Parent component can't change the value of state.
 State wont change inside the component.
 
 What is the Difference between pure components and impure components.
-Pure Components are said to be pure if the component provides same outpt for the same state and prps.
-Pure components are stateless, it doesnot hold the state of properties, where as Impure components are stores the prev, current, and possible feature state of the component.
+Pure Components are said to be pure if the component provides same outpt for the same state and props.
+Pure components are stateless, it doesnot hold the state of properties, where as Impure components stores the prev, current, and possible feature state of the component.
 i.e impure components can set the state and maintain the state
 
 Differences between functional component and class component?
@@ -484,9 +484,9 @@ Actions are created usig functions called Action creators.
 // need some example
 
 What is the Role of Reducer?
-Reducers are pure functions which specify how the application ste changes in response to an action.
+Reducers are pure functions which specify how the application state changes in response to an action.
 takes in the prev state and return the new state. returns the prev state if no work needs to be done.
-Determines what sort o updates needs to be done based on the type of action, and returns new values.
+Determines what sort of updates needs to be done based on the type of action, and returns new values.
 
 What is the store Significance?
 A store is a javascript object which can hold the applications state and 
@@ -530,40 +530,40 @@ In below code grandChild1 only needs the user but we are passing to all its chil
 
 function Main({userName}){
   return (<div>
-  <h1>Hello this is Main</h1>
-  <Child user={user}>
-  </div>);
+    <h1>Hello this is Main</h1>
+    <Child user={user}>
+    </div>);
 }
 
 function Child({user}){
   return (<div>
-  <grandChild1 user={user}>
-  </div>);
+      <grandChild user={user}>
+      </div>);
 }
 function grandChild({user}){
   return (<div>
-  <grandChild1 user={user}>
-  </div>);
+    <grandChild1 user={user}>
+    </div>);
 }
 
 function grandChild1({user}){
   return (<div>
-  <h1>Welcome {user.UserName}</h1>
-  </div>);
+    <h1>Welcome {user.UserName}</h1>
+    </div>);
 }
 
 // This can be replaced by 
 
 function Main({userName}){
   return (<div>
-  <h1>Hello this is Main</h1>
-  <Child >
-    <grandChild>
-      <garndChild1 user={user}>
-      </garndChild1>
-    </gradChild>
-  </Child>
-  </div>);
+    <h1>Hello this is Main</h1>
+    <Child >
+      <grandChild>
+        <garndChild1 user={user}>
+        </garndChild1>
+      </gradChild>
+    </Child>
+    </div>);
 }
 
 function Child({children}){
@@ -588,7 +588,7 @@ This can also be more simplified with the Context.
 let Context= React.createContext()
 
 <Context.Provider value={{user}}>
-<MainContent>
+  <MainContent>
 </Context.Provider>
 
 function grandChild1({user}){
