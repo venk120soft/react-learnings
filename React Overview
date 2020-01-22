@@ -18,3 +18,10 @@ It works in a way such that whenever any underlaying data changes, the represent
 and the changes from previous DOM with new one gets calculated then the only changes is applied to the real DOM.
 
 This way we can re-render the parts of Real DOM without rendering entire DOM, it is cost effective and faster.
+
+https://www.fullstack.cafe/blog/react-js-interview-questions
+What is Virtual DOM or What is Reconciliation?
+The virtual DOM (VDOM) is an in-memory representation of Real DOM. 
+The representation of a UI is kept in memory and synced with the “real” DOM.
+It’s a step that happens between the render function being called and the displaying of elements on the screen. 
+This entire process is called reconciliation.
