@@ -14,3 +14,28 @@ cd code . // to open the solution in vs code
 npm start // to start the development server
 
 Then Create some todo app to test.
+
+========================================================================
+
+Setting Up the Redux:
+
+https://medium.com/better-programming/creating-a-simple-app-with-react-js-f6aa88998952
+
+In command prompt goto the path where you want to save your application. then run below
+
+npm init react-app my-app-name
+
+This will intialize the react js application and create the application with the your application name (my-app-name)
+
+cd my-app-name
+
+// Setting up the Redux
+
+// core redux library
+
+npm install --save redux
+npm install --save react-redux
+
+npm install --save-dev babel-loader babel-core babel-preset-env babel-preset-react webpack webpack-dev-server html-webpack-plugin
+
+
