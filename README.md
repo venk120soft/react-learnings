@@ -8,7 +8,36 @@ The representation of a UI is kept in memory and synced with the “real” DOM.
 It’s a step that happens between the render function being called and the displaying of elements on the screen. 
 This entire process is called reconciliation.
 
+## What does mapStateToProps and mapDispactToProps will do?
 
+mapStateToProps: mapStateToProps is a function which takes the state(it can be any name) as parameter.
+```javascript
+const mapStateToProps=(state)=>{
+    return{
+        someValue: state.someValue,
+        age: state.age
+    }
+}
+```
+It will assign the props values to the state. i.e it will map state of component to the props. but how?
+by subcribing this function with redux store. but how?
+
+```javascript
+connect(mapStateToProps, mapDispatchToProps)(MyComponent)
+```
+connect is a method by react-redux which will sync the component state and actions with the store
+
+connect method is Heigher Order Component which will take the 2 functions and maped to the mapStateToProps and mapDispatchToProps internally. The Parameters we passed to them will be treated as state and dispatch respectively
+
+mapDispacthToProps: mapDispacthToProps is a function which takes dispatch(it can be any name) as a parameter 
+```javascript
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        onSomethingChange:()=>dispatch({type:"SomethingChanged"}),
+        onSomethingClick:()=>dispatch({type:"SomethingClicked"})
+    }
+}
+```
 # React Interview Questions & Answers
 
 > Click :star:if you like the project. Pull Request are highly appreciated. Follow me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
