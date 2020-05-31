@@ -382,7 +382,7 @@ The wrapping component provided by the library renders your component in its ren
 |322| [What is the purpose of eslint plugin for hooks?](#what-is-the-purpose-of-eslint-plugin-for-hooks)|
 |323| [What is the difference between Imperative and Declarative in React?](#what-is-the-difference-between-imperative-and-declarative-in-react)|
 |324| [What are the benefits of using typescript with reactjs?](#what-are-the-benefits-of-using-typescript-with-reactjs)|
-|325| [What is Heigher Order Component (HOC)?](# What is Heigher Order Component (HOC)?)|
+|325| [What is Heigher Order Component (HOC)?](#what-is-heigher-order-component-(hoc)?)|
 ## Core React
 
 
