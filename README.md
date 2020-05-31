@@ -38,6 +38,10 @@ const mapDispatchToProps=(dispatch)=>{
     }
 }
 ```
+# What is Heigher Order Component (HOC)?
+A higher-order component is a function that takes a React component class, and returns another React component class.
+The wrapping component provided by the library renders your component in its rendermethod and forwards the props to it, but also adds some useful behavior.
+
 # React Interview Questions & Answers
 
 > Click :star:if you like the project. Pull Request are highly appreciated. Follow me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
@@ -378,7 +382,7 @@ const mapDispatchToProps=(dispatch)=>{
 |322| [What is the purpose of eslint plugin for hooks?](#what-is-the-purpose-of-eslint-plugin-for-hooks)|
 |323| [What is the difference between Imperative and Declarative in React?](#what-is-the-difference-between-imperative-and-declarative-in-react)|
 |324| [What are the benefits of using typescript with reactjs?](#what-are-the-benefits-of-using-typescript-with-reactjs)|
-
+|325| [What is Heigher Order Component (HOC)?](# What is Heigher Order Component (HOC)?)|
 ## Core React
 
 
