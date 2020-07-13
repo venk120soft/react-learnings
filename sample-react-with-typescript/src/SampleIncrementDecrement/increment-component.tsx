@@ -18,11 +18,7 @@ class IncrementComponent extends React.Component<{}, MyState> {
         <label>{this.state.count}</label>
         <br />
         <br />
-        <button
-          onClick={this.increment}
-        >
-          Increment
-        </button>
+        <button onClick={this.increment}>Increment</button>
         <br />
         <br />
         <button onClick={this.decrement}>Decrement</button>
