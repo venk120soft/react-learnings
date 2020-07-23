@@ -12,10 +12,11 @@ In production we will have lots of components and states so if we can use redux 
 Redux is simplified implementation of flux, redux is a state container
 Based on the actions dispatched to the store, it is calling the respective reducer function(which takes the state and action from dispatcher function) and return the new state to the store.
 
-Intially read the state from store.
-once user performed some action on view, we dispatch state to the store
+Initially read the state from store. once user performed some action on view, we dispatch action to the store 
+(as the state is already map to props with mapStateToProps the state will be updated at the same time to store
+Then based on action dispatched, reducer takes the new state from store and do the manipulations based on action return the new state to the store)
 
-Dispatcher(state, action) => store => reducer(state, action) => new state sent to store
+Dispatcher(action) => store => reducer(state, action) => new state sent to store
 
 How to link the react with redux?
 We use Heigher Order Component called connect from react-redux library which takes mapStateToProps and mapDispatchToProps as arguments and component as in function
