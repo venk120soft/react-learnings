@@ -1,6 +1,31 @@
 # react-learnings
 React Javascript Library learning
 
+Few more Questions?
+Who and How does the Typescript code convert back to the javascript?
+
+Who and How does the jsx/tsx convert into the javascript?
+
+## how does the perfomance is optimized in react?
+https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/
+Virtual DOM and Using Immutable objects makes the application performant.
+
+## Why do we use immutable objects in React? Whats wrong with mutable objects?
+https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/
+With Mutable(regular) objects sometimes, knowing what changes can be very hard.
+
+Think about deep fields:
+```javascript
+myPackage.sender.address.country.id = 1;
+```
+How do you efficiently track which nested object changed?
+
+Think about arrays, For two arrays of the same size, the only way to know if they are equal is by comparing each element. A costly operation for large arrays.
+The most simple solution is to use immutable objects.
+
+If the object needs to be updated, a new object with the new value has to be created, because the original one is immutable and cannot be changed.
+And you can use reference equality to know that it changed.
+
 ## What is Virtual DOM or Reconciliation ?
 
 The virtual DOM (VDOM) is an in-memory representation of Real DOM. 
