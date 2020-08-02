@@ -1,4 +1,12 @@
 What are the React Lifecycle methods?
+For the latest changes:
+https://reactjs.org/docs/react-component.html#mounting
+https://reactjs.org/docs/react-component.html#updating
+https://reactjs.org/docs/react-component.html#unmounting
+https://reactjs.org/docs/react-component.html#error-handling
+
+Life Cycle Diagram:
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 In React, life methods are changing from one version to other. some are deprecating.
 
@@ -96,3 +104,33 @@ In here we should return only JSX output
         // this is where the component dies.
       }
    }
+
+Deprecated Methods:
+ComponentWillReceiveProps
+ComponentWillMount
+ComponentWillUpdate
+
+So Latest will be:
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+Render phase
+------------
+1) Constructor
+2) getDerivedStateFromProps(nextProps,prevState)
+3) render
+4) React will update DOM and Refs
+5) ComponentDidMount
+
+Re-Render phase
+---------------
+1) getDerivedStateFromProps(nextProps,prevState)
+2) shouldComponentUpdate(nextProps, nextState)
+3) render (based on decision taken in shouldComponentUpdate)
+4) getSnapshotBeforeUpdate(prevProps, prevState)
+5) React will update DOM and Refs
+6) ComponentDidUpdate
+
+On Error phase
+--------------
+1) getDerivedStateFromError(error)
+2) componentDidCatch(error, info)
