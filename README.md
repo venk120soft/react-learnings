@@ -1,17 +1,14 @@
 # react-learnings
-React Javascript Library learning
 
-Few more Questions?
-Who and How does the Typescript code convert back to the javascript?
+## Who and How does the Typescript code convert back to the javascript?
 
-Who and How does the jsx/tsx convert into the javascript?
+## Who and How does the jsx/tsx convert into the javascript?
 
 ## how does the perfomance is optimized in react?
-https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/
 Virtual DOM and Using Immutable objects makes the application performant.
+[more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 
 ## Why do we use immutable objects in React? Whats wrong with mutable objects?
-https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/
 With Mutable(regular) objects sometimes, knowing what changes can be very hard.
 
 Think about deep fields:
@@ -25,7 +22,7 @@ The most simple solution is to use immutable objects.
 
 If the object needs to be updated, a new object with the new value has to be created, because the original one is immutable and cannot be changed.
 And you can use reference equality to know that it changed.
-
+[more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 ## What is Virtual DOM or Reconciliation ?
 
 The virtual DOM (VDOM) is an in-memory representation of Real DOM. 
@@ -50,9 +47,11 @@ by subcribing this function with redux store. but how?
 ```javascript
 connect(mapStateToProps, mapDispatchToProps)(MyComponent)
 ```
-connect is a method by react-redux which will sync the component state and actions with the store
+connect is a method by react-redux which will sync the component state and actions with the store. it is Heigher Order Component which takes 2 functions and return new component
 
-connect method is Heigher Order Component which will take the 2 functions and maped to the mapStateToProps and mapDispatchToProps internally. The Parameters we passed to them will be treated as state and dispatch respectively
+* (mapStateToProps, mapDispatchToProps)
+* (MyComponent)
+By taking this 2 functions it will map to the mapStateToProps and mapDispatchToProps internally. The Parameters we passed to them will be treated as state and dispatch respectively
 
 mapDispacthToProps: mapDispacthToProps is a function which takes dispatch(it can be any name) as a parameter 
 ```javascript
@@ -65,7 +64,10 @@ const mapDispatchToProps=(dispatch)=>{
 ```
 # What is Heigher Order Component (HOC)?
 A higher-order component is a function that takes a React component class, and returns another React component class.
+
 The wrapping component provided by the library renders your component in its rendermethod and forwards the props to it, but also adds some useful behavior.
+
+Ex: connect from react-redux is the bridge between react and redux will return the new component with the state and props
 
 # React Interview Questions & Answers
 
