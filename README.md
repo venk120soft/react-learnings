@@ -8,6 +8,14 @@
 Virtual DOM and Using Immutable objects makes the application performant.
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 
+## Can we(How to) Pass Props Object from Child to Parent Component
+
+There is no way to pass props from a child component to a parent component. But we can pass functions from the parent to child component. 
+
+The child component function can update the state in a parent component. Then it is passed down as props again.
+
+[more info](https://www.pluralsight.com/guides/how-to-pass-props-object-from-child-component-to-parent-component)
+
 ## Why do we use immutable objects in React? Whats wrong with mutable objects?
 With Mutable(regular) objects sometimes, knowing what changes can be very hard.
 
