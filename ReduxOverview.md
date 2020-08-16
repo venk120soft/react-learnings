@@ -1,12 +1,20 @@
-React doesnot have state management, so it needs some tool to manage the state.
+## In react can we Manage the state with out redux? When to use Redux?
+Yes, we can manage the state in react without redux also. But as the application grows vertically, managing the state becomes tedious job.
+We can do it by passing props down to child component updating the state using function in props.
+
+For brief explanation [more info](https://www.robinwieruch.de/react-global-state-without-redux)
+
 Good Resources to understand:
-https://redux.js.org/basics/reducers
-https://egghead.io/lessons/javascript-redux-supplying-the-initial-state
+* https://www.robinwieruch.de/react-global-state-without-redux
+* https://redux.js.org/basics/reducers
+* https://egghead.io/lessons/javascript-redux-supplying-the-initial-state
 
 Redux is sate management Tool, that does the state management for react apps.
 As react Redux also follows uni directional data flow so its good tool to use.
 
 Starting Point:
+
+```javascript
 const stroe = createStore(rootReducers);
 
 render(<Provider store={store}>
@@ -15,7 +23,7 @@ render(<Provider store={store}>
     document.getElementById('root')
 );
 
-Here rootReducers can be combined of multiple Reducers.
+// Here rootReducers can be combined of multiple Reducers.
 
 const rootReducers= combineReducers({
 todos,
@@ -24,7 +32,7 @@ visibilityFilter
 
 export default rootReducer;
 
-reducers are atonomous, so each reducer will pass its own state initially
+// reducers are atonomous, so each reducer will pass its own state initially
 
 const todos=(state=[], action)=>{
 switch(action.type){
@@ -42,13 +50,13 @@ switch(action.type){
 }
 };
 
-const visibilityFiler=(state='Show_All',action)=>{
-switch(action.type){
-  case 'Set_Visibile_Filter':
-    return action.filter;
-  default:
-    return state;    
-}
+const visibilityFiler = (state = 'Show_All', action) => {
+    switch(action.type){
+      case 'Set_Visibile_Filter':
+        return action.filter;
+      default:
+        return state;    
+    }
 }
 
 // With this the rootReducers intial state will be overridden by the persistedState
@@ -65,6 +73,7 @@ const persistedState={
   }],
 };
 
+```
 In Redux, We have single store for maintaining all the application state. Actions are the only source to Store. 
 When We create the store the intial state of the store is determined by the root reducer
 
@@ -74,6 +83,7 @@ All it does is it will send the payload to the store, actions should be uniq, so
 Action Creators are regular  javascript functions, we can define however we want like arrow functions also
 Some of Examples of Actions:
 
+```javascript
 // Actions constants
 const myActions={
     apiStarted:"apiStarted",
@@ -197,6 +207,7 @@ export const mapDispatchToProps=(dispatch, props)=>({
     dipatch(setVisibilityFilter(props.filter));
     }
 });
+```
 Once the action dipatches, store will receive the state and new props, Then store will pass the prev state and props to the reducer. 
 Reducer will return the new state with the props passed.
 
