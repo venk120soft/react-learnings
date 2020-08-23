@@ -1,6 +1,7 @@
 # react-learnings
 
 ## Who and How does the Typescript code convert back to the javascript?
+Typescript Compiler helps to convert Typescript code to Javascript.
 
 ## Who and How does the jsx/tsx convert into the javascript?
 
@@ -9,7 +10,6 @@ Virtual DOM and Using Immutable objects makes the application performant.
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 
 ## Can we(How to) Pass Props Object from Child to Parent Component
-
 There is no way to pass props from a child component to a parent component. But we can pass functions from the parent to child component. 
 
 The child component function can update the state in a parent component. Then it is passed down as props again.
@@ -30,6 +30,7 @@ The most simple solution is to use immutable objects.
 
 If the object needs to be updated, a new object with the new value has to be created, because the original one is immutable and cannot be changed.
 And you can use reference equality to know that it changed.
+
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 ## What is Virtual DOM or Reconciliation ?
 
