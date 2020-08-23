@@ -4,7 +4,7 @@
 Typescript Compiler helps to convert Typescript code to Javascript.
 
 ## Who and How does the jsx/tsx convert into the javascript?
-
+In react we have transpiler called bable which will convert the JSX into Javascript functions and html
 ## how does the perfomance is optimized in react?
 Virtual DOM and Using Immutable objects makes the application performant.
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
