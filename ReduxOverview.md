@@ -11,8 +11,8 @@ Good Resources to understand:
 * https://egghead.io/lessons/javascript-redux-supplying-the-initial-state
 * https://github.com/tayiorbeii/egghead.io_redux_course_notes
 
-Redux is sate management Tool, that does the state management for react apps.
-As react Redux also follows uni directional data flow so its good tool to use.
+Redux is sate management tool, that does the state management for react apps.
+Redux follows uni directional data flow as react. so its good to use redux with react.
 
 Starting Point:
 
