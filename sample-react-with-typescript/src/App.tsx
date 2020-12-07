@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import IncrementComponent from "./SampleIncrementDecrement/increment-component";
+import IncrementComponentLocal from "./counter/increment-component-local";
 
 function App() {
   return (
     <div className="App">
       <h1>Hello This is Venkatesh</h1>
-      <IncrementComponent></IncrementComponent>
+      <IncrementComponentLocal />
     </div>
   );
 }
