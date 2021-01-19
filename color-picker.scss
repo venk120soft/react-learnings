@@ -1,0 +1,119 @@
+.mainContainer {
+  position: relative;
+  height: 160px;
+}
+
+.mainContainer > * {
+  position: absolute;
+}
+
+.colorCodesContainer {
+  width: 100%;
+}
+
+.hexContainer {
+  float: left;
+  width: 40%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-right: 5px;
+  max-height: 90px;
+}
+
+.remainContainer {
+  border-radius: 5px;
+  width: 58%;
+  float: right;
+  display: flex;
+  max-height: 90px;
+}
+
+.palettesContainer {
+  display: flex;
+  float: left;
+  flex-flow: wrap;
+  margin-top: 75px;
+}
+
+.textHexColor {
+  div {
+    border: 1px solid $theme-neutral-50; // gray
+    background-color: white;
+    padding-left: 3px;
+    border-radius: 3px;
+    div {
+      input {
+        border: none !important;
+        padding-left: 0px;
+      }
+    }
+  }
+}
+
+.textRemainColor {
+  padding-right: 3px;
+  box-sizing: border-box;
+}
+
+.callOutArea {
+  right: 300px;
+  top: 30px;
+}
+
+.colorBox {
+  height: 20px !important;
+  width: 28px;
+  float: left;
+  padding: 2px;
+  border-radius: 3px;
+  margin-left: -4px;
+  align-self: center;
+}
+
+.colorPaletteBox {
+  width: 36px;
+  height: 32px;
+  left: 8px;
+  bottom: 4px;
+  border-radius: 3px;
+  margin-left: 3px;
+  margin-top: 4px;
+  border-start-end-radius: groove;
+}
+
+.colorPaletteBox:active {
+  border-style: groove;
+  box-sizing: border-box;
+}
+
+.errorMsg {
+  color: red;
+  display: flex;
+  width: 100%;
+  top: 60px;
+}
+
+.colorPickerStyles {
+  div {
+    width: 230px;
+    // for hiding table
+    :last-child :nth-child(1) {
+      display: none;
+    }
+    // color picker thumb first
+    :nth-of-type(3) {
+      width: 10px;
+    }
+    // for slider thumb second
+    div:nth-last-child(2) :nth-of-type(2) {
+      width: 12px;
+      border: 0px;
+    }
+  }
+
+  // Slider styles
+  div:last-child div:last-of-type {
+    border-radius: 50px;
+    height: 10px;
+  }
+}
