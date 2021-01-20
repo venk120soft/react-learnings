@@ -1,3 +1,5 @@
+// https://github.com/boxdox/hex2rgb/blob/7fc1a945ebad67060420326417a8731b69753686/app.js#L66
+// https://boxdox.github.io/hex2rgb/
 import { Callout, ColorPicker, getColorFromString, IColor, ITextFieldProps, TextBoxField } from '@fluentui/react';
 import * as React from 'react';
 
