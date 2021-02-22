@@ -1,8 +1,10 @@
 // https://github.com/boxdox/hex2rgb/blob/7fc1a945ebad67060420326417a8731b69753686/app.js#L66
 // https://boxdox.github.io/hex2rgb/
-import { Callout, ColorPicker, getColorFromString, IColor, ITextFieldProps, TextBoxField } from '@fluentui/react';
+import { Callout, ColorPicker, getColorFromString, IColor, ITextFieldProps } from '@fluentui/react';
 import * as React from 'react';
+import { i18n } from 'common/localization';
 
+import { ApTextBox } from '../text-field';
 import { colorPaletteCells } from './color-constants';
 import * as styles from './color-picker.scss';
 
@@ -12,19 +14,19 @@ interface IColorPallete {
   color: string;
 }
 
-export interface IColorPickerProps extends ITextFieldProps {
+export interface IApColorPickerProps extends ITextFieldProps {
   colorObj: IColor;
   colorChangeHandler: (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
                        newColor?: string | IColor, isValid?: boolean) => void;
 }
 
-export interface IColorPickerState {
+export interface IApColorPickerState {
   color: IColor;
   isPickerOpen: boolean;
   isValidColor: boolean;
 }
 
-export class ColorPicker extends React.Component<IApColorPickerProps, IApColorPickerState> {
+export class ApColorPicker extends React.Component<IApColorPickerProps, IApColorPickerState> {
   private defaultColor: string = '#000000';
   constructor(props: IApColorPickerProps) {
     super(props);
@@ -58,14 +60,14 @@ export class ColorPicker extends React.Component<IApColorPickerProps, IApColorPi
                     onChange={this.updateColor}
                     alphaSliderHidden={true}
                     strings={{
-                      hueAriaLabel: 'HueAriaLabel',
+                      hueAriaLabel: i18n('Mgmt.ColorPicker.Common.ColorPicker.HueAriaLabel'),
                     }}
                   />
                 </Callout>
               )
             }
-            <TextBoxField
-              label={'HexCode'}
+            <ApTextBox
+              label={i18n('Mgmt.ColorPicker.Common.Color.Label.HexCode')}
               value={color.str.toLowerCase()}
               className={styles.textHexColor}
               onChange={this.onChangeHex}
@@ -75,22 +77,22 @@ export class ColorPicker extends React.Component<IApColorPickerProps, IApColorPi
             />
           </div>
           <div className={styles.remainContainer}>
-            <TextBoxField
-              label={'Red'}
+            <ApTextBox
+              label={i18n('Mgmt.ColorPicker.Common.Color.Label.Red')}
               value={color.r.toString()}
               className={styles.textRemainColor}
               onChange={this.onChangeRed}
               maxLength={3}
             />
-            <TextBoxField
-              label={'Green'}
+            <ApTextBox
+              label={i18n('Mgmt.ColorPicker.Common.Color.Label.Green')}
               value={color.g.toString()}
               className={styles.textRemainColor}
               onChange={this.onChangeGreen}
               maxLength={3}
             />
-            <TextBoxField
-              label={'Blue'}
+            <ApTextBox
+              label={i18n('Mgmt.ColorPicker.Common.Color.Label.Blue')}
               value={color.b.toString()}
               className={styles.textRemainColor}
               onChange={this.onChangeBlue}
@@ -130,7 +132,7 @@ export class ColorPicker extends React.Component<IApColorPickerProps, IApColorPi
   private onColorPaletteCellClick = (event: any) => {
     const colorObj = colorPaletteCells.find((x: IColorPallete) => x.id === event.target.id);
     const colorHex = colorObj ? colorObj.color : this.defaultColor;
-    this.setState({ color: getColorFromString(colorHex), isPickerOpen: false });
+    this.setState({ color: getColorFromString(colorHex), isPickerOpen: false, isValidColor: true });
     this.props.colorChangeHandler(event, getColorFromString(colorHex), true);
   }
 
