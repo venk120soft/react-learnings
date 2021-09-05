@@ -5,10 +5,25 @@ Typescript Compiler helps to convert Typescript code to Javascript.
 
 ## Who and How does the jsx/tsx convert into the javascript?
 In react we have transpiler called bable which will convert the JSX into Javascript functions and html
-## how does the perfomance is optimized in react?
+## How does the perfomance is optimized in react?
 Virtual DOM and Using Immutable objects makes the application performant.
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 
+React uses Reconcilliation process, to avoid re rendering the component, leverage the shouldComponentDidupdate method or inherit the component from te [React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent) to whether to re render it not
+The default implementation of this function returns true, leaving React to perform the update:
+```javascript
+shouldComponentUpdate(nextProps, nextState) {
+  return true;
+}
+```
+
+If you know that in some situations your component doesn’t need to update, you can return false from shouldComponentUpdate instead, to skip the whole rendering process, including calling render() on this component and below.
+
+Reconciliation is an accounting process that compares two sets of records to check that figures are correct and in agreement
+Make sure we use minified production build while deploying the app to avoid additional loggings
+
+Use windowing technique to render sub set of lists. This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+[more info](https://reactjs.org/docs/optimizing-performance.html)
 ## Can we(How to) Pass Props Object from Child to Parent Component
 There is no way to pass props from a child component to a parent component. But we can pass functions from the parent to child component. 
 
