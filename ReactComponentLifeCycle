@@ -8,6 +8,9 @@ https://reactjs.org/docs/react-component.html#error-handling
 Life Cycle Diagram:
 https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
+## replacing-component-lifecycle-methods-with-react-hooks
+https://blog.carbonfive.com/replacing-component-lifecycle-methods-with-react-hooks/
+
 In React, life methods are changing from one version to other. some are deprecating.
 
 We have 2 phases in react lifecycle 1) render 2) re-render
