@@ -17,8 +17,8 @@ This means we can pass a number of objects in that array, and the effect will be
 
 - No argument at all - useEffect will be called on every render.
 - [] - useEffect will be called only at the first render, since empty brackets can never change. this is likely to imitate `componentDidMount`
-- [arg1, arg2, … , argN] - useEffect will be called if any of the values inside of an array has changed. likely be imitate 'componentDidUpdate'
-- If we return the function inside the useEffect then it will help us to cleanup with is optional. likely to be imitate 'componentWillUnMount'
+- [arg1, arg2, … , argN] - useEffect will be called if any of the values inside of an array has changed. likely to be imitate `componentDidUpdate`
+- If we return the function inside the useEffect then it will help us to cleanup with is optional. likely to be imitate `componentWillUnmount`
 
 Examples:
 ```javascript
