@@ -16,8 +16,9 @@ useEffect is a hook function which takes two arguments as input:
 This means we can pass a number of objects in that array, and the effect will be applied (or in other words, argument function will be called) only if at least of the values inside an array changes on the next render. E.g. we can pass several values as a second argument:
 
 - No argument at all - useEffect will be called on every render.
-- [] - useEffect will be called only at the first render, since empty brackets can never change. this is likely to imitate componentDidMount
-- [arg1, arg2, … , argN] - useEffect will be called if any of the values inside of an array has changed.
+- [] - useEffect will be called only at the first render, since empty brackets can never change. this is likely to imitate `componentDidMount`
+- [arg1, arg2, … , argN] - useEffect will be called if any of the values inside of an array has changed. likely be imitate 'componentDidUpdate'
+- If we return the function inside the useEffect then it will help us to cleanup with is optional. likely to be imitate 'componentWillUnMount'
 
 Examples:
 ```javascript
@@ -38,4 +39,29 @@ useEffect(()=>{
   setCount(count+1);
 }, [count]); // This will be called when ever count is changed o/p 1,2,3,.... 
 it means we can call this as componentDidUpdate which will be called up on updates to the depependency objects
+```
+For cleanup we just need to return the function inside the useEffect
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function FriendStatus(props) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    // Specify how to clean up after this effect:
+    return function cleanup() {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
 ```
