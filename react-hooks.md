@@ -7,7 +7,7 @@ Resources: [Guide to `useEffect`](https://overreacted.io/a-complete-guide-to-use
 
 `Third reason` is, there is no specific way to reuse stateful component logic. Even though HOC and render props patterns address this problem, that asks for modifying the class component code. Hooks allow to share stateful logic without changing the component hierarchy.
 
-`Fourth reason` is, in a complex class component, related code are scattered in different lifecycle methods. Example, in case of a data fetching, we do that mainly in componentDidMount() and componentDidUpdate(). Another example is, in case of event listeners, we use componentDidMount() to bind an event and componentWil
+`Fourth reason` is, in a complex class component, related code are scattered in different lifecycle methods. Example, in case of a data fetching, we do that mainly in componentDidMount() and componentDidUpdate(). Another example is, in case of event listeners, we use componentDidMount() to bind an event
 
 ## How useState hook works? What is/are the arguments accepted by this hook and what is returned by the hook?
 
