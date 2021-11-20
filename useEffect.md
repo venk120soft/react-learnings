@@ -1,5 +1,6 @@
 [Best Resources to Understand by Dan Abramov](https://overreacted.io/a-complete-guide-to-useeffect/)
 
+# Using  `useEffect`
 > ***Note:***
 > If you’re familiar with React class lifecycle methods, you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
 ```javascript
@@ -8,7 +9,6 @@ useEffect(()=>{
   // add your api fetching logic or update state for the reference
 }, [dependency array]);
 ```
-
 useEffect is a hook function which takes two arguments as input: 
   - the first one is a function to call
   - the second one is an array of 'Calling/Dependent objects'. 
