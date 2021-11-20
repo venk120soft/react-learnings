@@ -43,25 +43,11 @@ it means we can call this as componentDidUpdate which will be called up on updat
 For cleanup we just need to return the function inside the useEffect
 
 ```javascript
-import React, { useState, useEffect } from 'react';
-
-function FriendStatus(props) {
-  const [isOnline, setIsOnline] = useState(null);
-
-  useEffect(() => {
-    function handleStatusChange(status) {
-      setIsOnline(status.isOnline);
-    }
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
-    // Specify how to clean up after this effect:
-    return function cleanup() {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
-    };
-  });
-
-  if (isOnline === null) {
-    return 'Loading...';
-  }
-  return isOnline ? 'Online' : 'Offline';
-}
+useEffect(() => {
+  window.addEventListener("mousemove", handleMousePosition);
+  //cleanup
+  return () => {
+    window.removeEventListener("mousemove", handleMousePosition);
+  };
+}, []);
 ```
