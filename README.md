@@ -1,4 +1,4 @@
-# react-learnings
+# react-learning
 
 ## Who and How does the Typescript code convert back to the javascript?
 Typescript Compiler helps to convert Typescript code to Javascript.
@@ -49,7 +49,9 @@ And you can use reference equality to know that it changed.
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 ## What is Virtual DOM or Reconciliation ?
 
-Reconciliation : Reconciliation is an accounting process that compares two sets of records to check that figures are correct and in agreement ![Reconciliation image](.\images\reconciliation.png)
+Reconciliation : Reconciliation is an accounting process that compares two sets of records to check that figures are correct and in agreement.
+
+![Reconciliation image](./images/reconciliation.PNG)
 
 The virtual DOM (VDOM) is an in-memory representation of Real DOM. 
 The representation of a UI is kept in memory and synced with the “real” DOM.
