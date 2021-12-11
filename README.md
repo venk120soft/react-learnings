@@ -1,14 +1,29 @@
-# react-learnings
+# react-learning
 
 ## Who and How does the Typescript code convert back to the javascript?
 Typescript Compiler helps to convert Typescript code to Javascript.
 
 ## Who and How does the jsx/tsx convert into the javascript?
 In react we have transpiler called bable which will convert the JSX into Javascript functions and html
-## how does the perfomance is optimized in react?
+## How does the perfomance is optimized in react?
 Virtual DOM and Using Immutable objects makes the application performant.
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 
+React uses Reconcilliation process, to avoid re rendering the component, leverage the shouldComponentDidupdate method or inherit the component from te [React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent) to whether to re render it not
+The default implementation of this function returns true, leaving React to perform the update:
+```javascript
+shouldComponentUpdate(nextProps, nextState) {
+  return true;
+}
+```
+
+If you know that in some situations your component doesn’t need to update, you can return false from shouldComponentUpdate instead, to skip the whole rendering process, including calling render() on this component and below.
+
+Reconciliation is an accounting process that compares two sets of records to check that figures are correct and in agreement
+Make sure we use minified production build while deploying the app to avoid additional loggings
+
+Use windowing technique to render sub set of lists. This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+[more info](https://reactjs.org/docs/optimizing-performance.html)
 ## Can we(How to) Pass Props Object from Child to Parent Component
 There is no way to pass props from a child component to a parent component. But we can pass functions from the parent to child component. 
 
@@ -33,6 +48,10 @@ And you can use reference equality to know that it changed.
 
 [more info](https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 ## What is Virtual DOM or Reconciliation ?
+
+Reconciliation : Reconciliation is an accounting process that compares two sets of records to check that figures are correct and in agreement.
+
+![Reconciliation image](./images/reconciliation.PNG)
 
 The virtual DOM (VDOM) is an in-memory representation of Real DOM. 
 The representation of a UI is kept in memory and synced with the “real” DOM.
@@ -78,6 +97,11 @@ The wrapping component provided by the library renders your component in its ren
 
 Ex: connect from react-redux is the bridge between react and redux will return the new component with the state and props
 
+# How can we use useEffect in Functional component to handle the lifecycle methods like in class components
+- No argument at all - useEffect will be called on every render.
+- [] - useEffect will be called only at the first render, since empty brackets can never change. this is likely to imitate componentDidMount
+- [arg1, arg2, … , argN] - useEffect will be called if any of the values inside of an array has changed. likely to be imitate componentDidUpdate
+- If we return the function inside the useEffect then it will help us to cleanup with is optional. likely to be imitate componentWillUnmount
 # React Interview Questions & Answers
 
 > Click :star:if you like the project. Pull Request are highly appreciated. Follow me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
