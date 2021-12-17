@@ -102,6 +102,18 @@ Ex: connect from react-redux is the bridge between react and redux will return t
 - [] - useEffect will be called only at the first render, since empty brackets can never change. this is likely to imitate componentDidMount
 - [arg1, arg2, … , argN] - useEffect will be called if any of the values inside of an array has changed. likely to be imitate componentDidUpdate
 - If we return the function inside the useEffect then it will help us to cleanup with is optional. likely to be imitate componentWillUnmount
+
+# How to read the url parameters in react router
+https://medium.com/better-programming/how-to-pass-multiple-route-parameters-in-a-react-url-path-4b919de0abbe
+```javascript
+<Route exact path="/genres" component={Genres} />
+<Route exact path="/movie/:id" component={MovieDetailsContainer} />
+// this is an example of a dynamically updating route. The first part of the path, the "/movie/” part, doesn’t change, but the :id is a route parameter that is set dynamically
+<Route path="/genres/:genreName/:genreId" component={GenreList} />
+```
+# How do you access route parameters from a URL?
+this.props.match.params has all the paramters can be accessed like ex: his.props.match.params.genreId
+
 # React Interview Questions & Answers
 
 > Click :star:if you like the project. Pull Request are highly appreciated. Follow me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
