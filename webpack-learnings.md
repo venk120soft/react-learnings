@@ -6,7 +6,7 @@ This is especially useful for Single Page Applications (SPAs).
 
 Let's say we have 3 different js files one depend on other, and to use them in html file, we have to maintain the order of how they have implemented otherwise we are not able to process the changes. so webpack will handle this better hence we no need to worry about the order now.
 
-Bundling and Modularisation are Webpack’s main features. Through plugins & loaders we can further extend this (we’ll see this later) but primarily this is what Webpack is for.
+Bundling and Modularisation are Webpack’s main features. Through plugins & loaders we can further extend this but primarily this is what Webpack is for.
 
 Loaders are how Webpack can process content other than JavaScript. With Loaders we can get Webpack to process many types of files — CSS, Images, TypeScript and ES2015 code and so on
 ```javascript
@@ -36,5 +36,4 @@ module.exports = {
     }
 };
 ```
-Let's think about 
-[more info]https://blog.ag-grid.com/webpack-tutorial-understanding-how-it-works/ has very good examples must see to understand what is it for
+[more info](https://blog.ag-grid.com/webpack-tutorial-understanding-how-it-works/) has very good examples must see to understand what is it for
