@@ -1,11 +1,12 @@
 Better explanation for the difference between Functional component vs Class Components
-https://overreacted.io/how-are-function-components-different-from-classes/
+[Function vs Class component](https://overreacted.io/how-are-function-components-different-from-classes/) | [Demo](
+https://codesandbox.io/s/pjqnl16lm7)
 
 state is Mutable(we can change), and props are Immutable(we can't change)
 
 Class components are Mutated or statefull components when ever any change in state, the entire component get's re render with the Mutated(changed) state Value.
 
-In Class components we use **this** keyword to access the **state, props and functions**, that we declare inside the class component. **this** is poining to the current object which may result in getting the wrong results  in case of any state updates. Due to the complexity in dealing with **this** keyword inside class components, if it's not handled properly, it will take some other value. That will result in ending up showing wrong values [more info](https://overreacted.io/how-are-function-components-different-from-classes/) 
+In Class components we use **this** keyword to access the **state, props and functions**, that we declare inside the class component. **this** is poining to the current object which may result in getting the wrong results  in case of any state updates. Due to the complexity in dealing with **this** keyword inside class components, if it's not handled properly, it will take some other value. That will result in ending up showing wrong values This [demo](https://codesandbox.io/s/pjqnl16lm7) will help us to understand why we go for functional components. [more info](https://overreacted.io/how-are-function-components-different-from-classes/) 
 
 Class components has render method and JSX to define the component and it should extend React.Component it has lifecycle methods to handle in differnt stages of an application.
 
@@ -18,7 +19,7 @@ Class Components:
 - Class components are Mutated or statefull components
 - Class components has render method and JSX to define the component 
 - Class components should extend React.Component it has lifecycle methods to handle in differnt stages of an application.
-- Class component uses **this** keyword to access state,props, functions define inside
+- Class component uses **this** keyword to access state,props, functions define inside. Check this [Demo](https://codesandbox.io/s/pjqnl16lm7)
 
 Functional Components:
 - Functional components are having hooks to handle the state
