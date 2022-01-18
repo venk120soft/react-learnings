@@ -85,11 +85,11 @@ Components:
 
 There are 2 types of components we have 
 1) stateful : These components will Rememeber everything it does and it can change states.
-  it contains knowledge of paste, present and possible future state changes
-  it receives information from the stateless componennts if state change is required.
+      - it contains knowledge of paste, present and possible future state changes
+      - it receives information from the stateless componennts if state change is required.
   
 2) stateless: Doesnot remember anything it does.
-  These are also called dumb components, it never changes the state.
+      - These are also called dumb components, it never changes the state.
 ```
 var Header=React.createClass({
 render : function(){
@@ -183,53 +183,50 @@ setTimeout(()=> { this.setState({user:"swathi",id:201})} , 5000)
     );
 }})
 ```
-============================================================================================================================
+
 //Life Cycle of the components.
 We have 4 stages
-Intial Phase
-Updating Phase
-Props change Phase
-Unmounting Phase
+- Intial Phase
+- Updating Phase
+- Props change Phase
+- Unmounting Phase
 
-In Intial Phase
- getDefaultProps()
-    This method called before component is created and allowed to specify the default values of this.props
- getIntialState()
-    This method called before component is created and allowed to specify the default values of this.state
- componentWillMount()
-  If you try to set the state here your component wont re render
- render()
-  Every component must have this method.This method is responsible for returning single root html node
-  this single root may have many child nodes.
-  if you wish to render nothing then we can return null or false.
-componentDidMount()
-  This method will called immediatly after component rendered and Placed in DOM at this point we can query any dom operations.
-  In this method we can call api to fetch data componentDidMount based on the data we fetch UI gets updated
+## In Intial Phase
+ #### getDefaultProps()
+    - This method called before component is created and allowed to specify the default values of this.props
+ #### getIntialState()
+   - This method called before component is created and allowed to specify the default values of this.state
+ #### componentWillMount()
+   - If you try to set the state here your component wont re render
+ #### render()
+  - Every component must have this method.This method is responsible for returning single root html node
+  - this single root may have many child nodes.
+  - if you wish to render nothing then we can return null or false.
+ #### componentDidMount()
+  - This method will called immediatly after component rendered and Placed in DOM at this point we can query any dom operations.
+  - In this method we can call api to fetch data componentDidMount based on the data we fetch UI gets updated
   
 Note: Except render method all the methods are called only once.
 
-Updating Phase:
-shouldComponentUpdate()
-  if it returns true then only the component will update else it will skip the updating part
-componentWillUpdate()
-  this method gets called, just before the component is about to Update. we cant set the state here.
-render()
-  
-ComponentDidUpdate()
+## Updating Phase:
+ #### shouldComponentUpdate()
+  - if it returns true then only the component will update else it will skip the updating part
+ #### componentWillUpdate()
+  - this method gets called, just before the component is about to Update. we cant set the state here.
+ ### render() 
+ ### ComponentDidUpdate()
     This will be called aftrer component rendered. In this method we can call api to fetch data componentDidMount
-PropsChangePhase:
-  componentsWillReceiveProps(): 
-  shouldComponentUpdate()
-  componentWillUpdate()
-  render()
-  componentDidUpdate()
+**propsChangePhase:**
+  - mponentsWillReceiveProps(): 
+  - ouldComponentUpdate()
+  - mponentWillUpdate()
+  - render()
+  - componentDidUpdate()
 
-UnMountingPhase:
-componentWillUnMount():
-any cleanups can be performed here, removing the event listeners and etc.
+## UnMountingPhase:
+ ### componentWillUnMount():
+   - any cleanups can be performed here, removing the event listeners and etc.
 
-
-==================================================================================================
 Events:
 =======
 
