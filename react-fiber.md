@@ -25,13 +25,15 @@ Task Scheduler helps to Prioritze the work in call stack by swapping the unit of
 
 ## How  does the React pause and re use the work and run the next
 This is based on Task Priorities built by React Fiber. 
-For each tasks there is time limit to complete and in between If any heigh priority task is added to tasks then it will pause the current(ongoing work) task and swap current task with heigher priority.
+For each tasks there is time limit to complete(may be 16 millseconds to 100 ms) and in between If any heigh priority task is added to tasks then it will pause the current(ongoing work) task and swap current task with heigher priority.
 Now the Heigher Priority work will be executed and come back to the task which we have paused the task.
 Then It starts comparing the existing task and clone all the elements which are not changed and flag the updated elements
 
 
 - Pausing work is one of the features of Fiber based on the priorities
 - React uses diffing algorithm to do the reconciliation process.
-
-
+Before comarison
+![Before comarison](./images/Reconciliation1.png)
+After comarison only below effected list will be updated to the DOM
+![After comarison](./images/Reconciliation2.png)
 
