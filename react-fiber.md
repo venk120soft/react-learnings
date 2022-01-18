@@ -4,6 +4,8 @@ Resources
 - [Notes from React Fiber team](https://github.com/acdlite/react-fiber-architecture)
 - [React fiber resources](https://github.com/koba04/react-fiber-resources)
 - [Good Video for Summarize React fiber](https://www.youtube.com/watch?v=0fUmOPQUv-Q)
+## What is React Fiber?
+Fiber is the new reconciliation engine or reimplementation of core algorithm in React v16. The goal of React Fiber is to increase its suitability for areas like animation, layout, gestures, ability to pause, abort, or reuse work and assign priority to different types of updates; and new concurrency primitives.
 
 ## What is Reconciler?
 The reconciler is the part of React which contains the algorithm used to diff one tree with another to determine which parts need to be changed and send that to **Renderer**.
