@@ -1,4 +1,20 @@
-## In react can we Manage the state with out redux? When to use Redux?
+# Redux Learnings:
+## Redux flow in short (TODO: Update it as per better understandings)
+When user clicks on any components on the UI, action invoke changes and dispatch to the store with the new value, store will inform the reducers about the new value and the action triggered. 
+- Then the respective Reducer will be called with the action and the new value.
+- Reducers will update the state of an application 
+- Updated state get notified to the component which in turn re render the component with new state changes
+[Better explanantion](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
+
+## Redux Core concept
+- Intuitive state container with a single source of truth
+- The state in the store is immutable
+- Reducers are employed to update state
+- Actions invoke changes to the store
+
+[redux vs mobx which is right for you](https://www.tabnine.com/blog/redux-vs-mobx/)
+
+## In react can we manage the state with out redux? When to use Redux?
 Yes, we can manage the state in react without redux also. But as the application grows vertically, managing the state becomes tedious job.
 We can do it by passing props down to child component updating the state using function in props.
 
