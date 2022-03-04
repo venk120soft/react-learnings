@@ -4,7 +4,9 @@ When user clicks on any components on the UI, action invoke changes and dispatch
 - Then the respective Reducer will be called with the action and the new value.
 - Reducers will update the state of an application 
 - Updated state get notified to the component which in turn re render the component with new state changes
-[Better explanantion](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
+[better explanantion from official redux site](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
+![Redux flow diagram](/images/reduxdataflowdiagram.gif)
+
 
 ## Redux Core concept
 - Intuitive state container with a single source of truth
