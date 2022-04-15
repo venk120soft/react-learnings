@@ -83,8 +83,6 @@ const visibilityFiler = (state = 'Show_All', action) => {
 // In Persistant state we have defined todos only, so in tootReducers the todos will replaced by the persistant state
 // and visibility filter show as in rootReducer(visibility Filter) defines.
 // and also note that as we are not passing the actions from here for the respective reducer it will hit the default(bcz actions are undefined)
-const stroe =createStore(rootReducers, persistedState);
-
 const persistedState={
   todos: [{
     id:'0',
@@ -92,6 +90,7 @@ const persistedState={
     completed: false,
   }],
 };
+const stroe =createStore(rootReducers, persistedState);
 
 ```
 In Redux, We have single store for maintaining all the application state. Actions are the only source to Store. 
