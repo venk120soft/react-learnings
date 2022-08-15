@@ -1,4 +1,8 @@
 Resources: [Guide to `useEffect`](https://overreacted.io/a-complete-guide-to-useeffect/) | [Class vs Functional](https://overreacted.io/how-are-function-components-different-from-classes/)
+- https://www.telerik.com/kendo-react-ui/react-hooks-guide/
+- https://www.wix.engineering/post/custom-react-hook-when-software-design-meets-react-hooks
+- https://usehooks.com/
+
 ## Why React hooks was introduced?
 
 `One reason` to introduce hooks was the complexity in dealing with `this` keyword inside class components. If not handled properly, `this` will take some other value. That will result in breaking lines like this.setState() and other event handlers. Using hooks, we avoid that complexity when working with functional components.
