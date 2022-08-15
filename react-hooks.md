@@ -114,4 +114,166 @@ export class ConsumerComponent extends Component {
   }
 }
  ``` 
+ # Custom hooks
+ Custom React hooks are help us to achieve code reusability, for instance in every application we make rest api calls to do fetch and manipulate the data.
+ Its a good practice to create custom hook to avoid code duplication and for code mainatanance
+ 
+ Refer: https://www.wix.engineering/post/custom-react-hook-when-software-design-meets-react-hooks
+ For code reference: https://stackblitz.com/edit/custom-rest-api-hook?file=src%2FTodoList.js
+ ```javascript
+ import React from "react";
+const { useState, useRef, useEffect } = React;
+
+export default function useApi(baseUrl) {
+  const CORS_HOST_URL = "https://cors-anywhere.herokuapp.com/";
+
+  const url = useRef(`${CORS_HOST_URL}${baseUrl}`);
+
+  const [data, setData] = useState([]);
+  const [isQuerying, setIsQuerying] = useState(true);
+
+  useEffect(() => {
+    url.current = `${CORS_HOST_URL}${baseUrl}`;
+  }, [baseUrl]);
+
+  const list = async () => {
+    setIsQuerying(true);
+    const res = await fetch(url.current);
+    const resData = await res.json();
+    setData([...resData]);
+    setIsQuerying(false);
+  };
+
+  const add = async title => {
+    setIsQuerying(true);
+    const res = await fetch(url.current, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title })
+    });
+    const resData = await res.json();
+    setData([...data, { id: resData.id, title }]);
+    setIsQuerying(false);
+  };
+
+  const edit = async (id, newTitle) => {
+    setIsQuerying(true);
+    await fetch(url.current, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id, newTitle })
+    });
+    const copy = [...data];
+    const index = copy.findIndex(item => item.id === id);
+    copy[index].title = newTitle;
+    setData(copy);
+    setIsQuerying(false);
+  };
+
+  const remove = async id => {
+    setIsQuerying(true);
+    await fetch(`${url.current}?item=${id}`, {
+      method: "DELETE"
+    });
+    const copy = [...data];
+    copy.splice(copy.findIndex(item => item.id === id), 1);
+    setData(copy);
+    setIsQuerying(false);
+  };
+
+  const api = {
+    list,
+    add,
+    edit,
+    remove
+  };
+
+  return [data, isQuerying, api];
+}
+
+ ```
+ Now use this custom react hook to create TODO List
+ ```javascript
+ import React from "react";
+import "./style.css";
+import useApi from "./useApi.js";
+import Loader from "./Loader";
+const { useRef, useEffect } = React;
+
+export default function TodoList(props) {
+  const BASE_URL = `https://guysgv.wixsite.com/todo-api/_functions/todo/${
+    props.selectedList.id
+  }`;
+
+  const [data, isQuerying, api] = useApi(BASE_URL);
+  const inputRef = useRef();
+
+  useEffect(() => {
+    api.list();
+  }, [props]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    api.add(inputRef.current.value);
+  }
+
+  function handleEdit(item) {
+    api.edit(item.id, `${item.title} edited`);
+  }
+
+  function handleRemove(item) {
+    api.remove(item.id);
+  }
+
+  return (
+    <div className="toDoApp">
+      <div className="header">To Do List ({props.selectedList.title})</div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <input
+            ref={inputRef}
+            name="itemName"
+            type="text"
+            placeholder="Add item"
+          />
+        </label>
+      </form>
+      <div className="listContainer">
+        {isQuerying && (
+          <div className="loaderContainer">
+            <Loader />
+          </div>
+        )}
+        {data && (
+          <div className="list">
+            {data.map(item => {
+              return (
+                <div className="listItem" key={item.id}>
+                  {item.title}
+                  <span
+                    onClick={() => handleRemove(item)}
+                    className="removeItem"
+                  >
+                    Remove
+                  </span>
+                  <span onClick={() => handleEdit(item)} className="editItem">
+                    Edit
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+ ```
+ 
   
