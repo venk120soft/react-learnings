@@ -1,6 +1,7 @@
-[Best Resources to Understand by Dan Abramov](https://overreacted.io/a-complete-guide-to-useeffect/)
+[Best Resources to Understand by Dan Abramov](https://overreacted.io/a-complete-guide-to-useeffect/) |
+[Best practices for `useEffect`](https://www.youtube.com/watch?v=QQYeipc_cik)
 
-# Using  `useEffect`
+# Using `useEffect`
 > ***Note:***
 > If you’re familiar with React class lifecycle methods, you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
 ```javascript
