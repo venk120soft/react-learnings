@@ -1,7 +1,9 @@
 Resources: [Guide to `useEffect`](https://overreacted.io/a-complete-guide-to-useeffect/) | [Class vs Functional](https://overreacted.io/how-are-function-components-different-from-classes/)
 - https://www.telerik.com/kendo-react-ui/react-hooks-guide/
-- https://www.wix.engineering/post/custom-react-hook-when-software-design-meets-react-hooks
+- [Custom hooks](https://www.wix.engineering/post/custom-react-hook-when-software-design-meets-react-hooks)
 - https://usehooks.com/
+- [Clean api calls using React hooks](https://betterprogramming.pub/clean-api-call-with-react-hooks-3bd6438a375a)
+- [Different ways of calling api](https://dev.to/adyasha8105/how-to-manage-api-calls-in-react-11a8)
 
 ## Why React hooks was introduced?
 
@@ -125,7 +127,7 @@ export class ConsumerComponent extends Component {
  Refer: https://www.wix.engineering/post/custom-react-hook-when-software-design-meets-react-hooks
  For code reference: https://stackblitz.com/edit/custom-rest-api-hook?file=src%2FTodoList.js
  ```javascript
- import React from "react";
+import React from "react";
 const { useState, useRef, useEffect } = React;
 
 export default function useApi(baseUrl) {
@@ -279,5 +281,109 @@ export default function TodoList(props) {
   );
 }
  ```
+ # [Implement API calling in Application using react hooks](https://betterprogramming.pub/clean-api-call-with-react-hooks-3bd6438a375a)
  
-  
+ Create common clients for your application 
+ 
+```javascript
+import axios from "axios";
+
+export const apiClient = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com"
+});
+
+export const apiClient1 = axios.create({
+  baseURL: "https://google.com"
+});
+
+```
+Then in `service` layer we have to call all the api's or create seperate file for each
+
+```javascript
+import {apiClient1 as client} from "./client";
+
+const getComments = () => client.get("/comments");
+
+const getPosts = () => client.get("/posts");
+
+export default {
+  getComments,
+  getPosts
+};
+```
+Create common hook to handle the requests in ex: useApi.ts file 
+```javascript
+import { useState } from "react";
+
+export default useApi = (apiFunc) => {
+  // We can replace useState with useReducer
+  const [data, setData] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const request = async (...args) => {
+    setLoading(true);
+    try {
+      const result = await apiFunc(...args);
+      setData(result.data);
+    } catch (err) {
+      setError(err.message || "Unexpected Error!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    data,
+    error,
+    loading,
+    request
+  };
+};
+```
+Now finally we can call this in React component
+```javascript
+import "./styles.css";
+import React, { useEffect } from "react";
+import commentsApi from "./api/comments";
+import postsApi from "./api/posts";
+import useApi from "./hooks/useApi";
+
+export default function App() {
+  const getPostsApi = useApi(postsApi.getPosts);
+  const getCommentsApi = useApi(commentsApi.getComments);
+
+  useEffect(() => {
+    getPostsApi.request();
+    getCommentsApi.request();
+  }, []);
+
+  return (
+    <div className="App">
+      {/* Post List */}
+      <div>
+        <h1>Posts</h1>
+        {getPostsApi.loading && <p>Posts are loading!</p>}
+        {getPostsApi.error && <p>{getPostsApi.error}</p>}
+        <ul>
+          {getPostsApi.data?.map((post) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+      </div>
+      {/* Comment List */}
+      <div>
+        <h1>Comments</h1>
+        {getCommentsApi.loading && <p>Comments are loading!</p>}
+        {getCommentsApi.error && <p>{getCommentsApi.error}</p>}
+        <ul>
+          {getCommentsApi.data?.map((comment) => (
+            <li key={comment.id}>{comment.name}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+```
