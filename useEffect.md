@@ -1,6 +1,21 @@
 [Best Resources to Understand by Dan Abramov](https://overreacted.io/a-complete-guide-to-useeffect/) |
 [Best practices for `useEffect`](https://www.youtube.com/watch?v=QQYeipc_cik)
 
+# Using `useState`
+We always use below way of implementation to set the state
+```javascript
+const [count, setCount]=useState(0);
+
+setCount(count+1)
+```
+These way of updating the state, will always endup with messing with the state because the state value is treating like a value type.
+
+Instead, if we set the state by using function, internally it will create the closure for the state hence we always have a reference of all the values point in time.
+```javascript
+const [count, setCount] = useState(0);
+
+setCount((previousCount) => previousCount + 1)
+```
 # Using `useEffect`
 > ***Note:***
 > If you’re familiar with React class lifecycle methods, you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
